@@ -9,5 +9,8 @@
             "email": "hello@organikweb.com.au"
         }
     ],
-    "require": {}
+    "require": {},
+    "extra": {
+        "installer-name": "vanilla"
+    }
 }
