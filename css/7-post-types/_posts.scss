@@ -1,0 +1,282 @@
+//=======================================================================================================================================================
+// Posts archive/index
+//=======================================================================================================================================================
+
+.index-page {
+
+	.section-entry-list {
+		background-color: $color-light-grey;
+	}
+}
+
+// Append CPT list classes to this to share the default post list styling
+.posts-list,
+.services-list {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + #{$gutters} * 2);
+	margin: (-$gutters);
+
+	.entry {
+		position: relative;
+		display: flex;
+		width: 100%;
+		padding: $gutters;
+
+		@include breakpoint(sm) {
+			width: 50%;
+		}
+
+		@include breakpoint(lg) {
+			width: 33.33336%;
+		}
+
+		.entry-link {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners + 5px;
+			@include outset-link(5, 5);
+
+			@include on-state(hover, focus) {
+				color: $color-blue;
+
+				.title, .meta, .excerpt {
+					color: $color-blue;
+				}
+				.secondary-button {
+					color: $color-blue;
+
+					&:after {
+						transform: translateX($secondary-button-transform);
+						color: $color-blue;
+					}
+				}
+			}
+		}
+
+		.entry-wrapper {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners;
+			box-shadow: $shadows;
+			transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+			overflow: hidden;
+		}
+
+		.ratio-sizer {
+			position: relative;
+			overflow: hidden;
+			display: block;
+			width: 100%;
+			padding-top: 56.25%;
+		}
+
+		.entry-thumb {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			min-width: 100%;
+			min-height: 100%;
+			height: auto;
+			width: auto;
+			object-fit: cover;
+		}
+
+		.entry-preview {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			background-color: $color-white;
+			padding: $container-pad-mobile;
+
+			@include breakpoint(xs) {
+				padding: 30px;
+			}
+		}
+
+		.entry-preview-content {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			max-width: $max-width-xs;
+		}
+
+		.title {
+			display: block;
+			width: 100%;
+			margin: 0;
+			color: $color-navy;
+			@include transition(color);
+		}
+
+		.meta {
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+			margin: $line-break 0 0 0;
+			color: $color-navy;
+			@include transition(color);
+
+			.posted-on {
+				display: block;
+				margin: 0 15px 0 0;
+			}
+
+			.categories {
+
+				a[rel~="tag"] {
+					color: $color-navy;
+
+					@include on-state(hover, focus) {
+						color: $color-navy;
+					}
+				}
+			}
+		}
+
+		.excerpt {
+			display: block;
+			margin: $line-break 0 0 0;
+			width: 100%;
+			color: $color-navy;
+			@include transition(color);
+		}
+
+		.actions {
+			display: flex;
+            align-items: flex-end;
+            flex-grow: 1;
+			margin: $line-break 0 0 0;
+
+			.primary-button,
+			.secondary-button {
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Single posts
+//=======================================================================================================================================================
+
+.single-post {
+
+	.entry-meta {
+		display: inline-block;
+		width: 100%;
+		padding: $paragraph-break 0 0 0;
+		margin: $paragraph-break 0 0 0;
+		border-top: $border-weight solid $color-mid-grey;
+
+		.post-attributes {
+
+			.posted-in {
+
+				a {
+					@include outset-link;
+					border-radius: $corners;
+				}
+			}
+		}
+	}
+
+	.section-related-articles {
+		background-color: $color-light-grey;
+
+		.posts-list {
+
+			.entry {
+
+				&:nth-child(3) {
+
+					@include breakpoint(sm,lg) {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Entry meta tables - shared between multiple CPTs
+//=======================================================================================================================================================
+
+.entry-meta-table {
+	display: block;
+	width: 100%;
+
+	.meta-table-header {
+		margin: 0 0 $line-break-xl 0;
+
+		.title {
+			margin: 0;
+		}
+	}
+
+	.meta-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.meta-group {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		margin: 0 0 $line-break 0;
+		padding: 0 0 $line-break 0;
+		border-bottom: $border-weight solid $color-mid-grey;
+
+		&:last-child {
+			margin: 0;
+			padding: 0;
+			border: none;
+		}
+	}
+
+	.group-label {
+		display: flex;
+		align-items: center;
+		min-width: 130px;
+		margin: 0 0 $line-break-xs 0;
+
+		.label {
+			font-weight: 600;
+		}
+	}
+
+	.group-content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-grow: 1;
+		width: 100%;
+
+		a {
+			display: block;
+			@include outset-link;
+			border-radius: $corners;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+}

@@ -1,0 +1,80 @@
+//=======================================================================================================================================================
+// Default entry header
+//=======================================================================================================================================================
+
+.entry-header {
+	position: relative;
+	padding: 80px 0;
+	width: 100%;
+	color: $color-white;
+	background-color: $color-navy;
+    background-size: cover;
+    background-position: center;
+	background-repeat: no-repeat;
+	z-index: 1;
+
+	@include breakpoint(xs) {
+		padding: 120px 0;
+	}
+
+	@include breakpoint(md) {
+		padding: 180px 0;
+	}
+
+	.entry-header-wrap {
+		position: relative;
+		width: 100%;
+	}
+
+	.entry-header-content {
+		position: relative;
+		width: 100%;
+		max-width: $max-width-md;
+	}
+
+	.entry-title {
+		display: block;
+		width: 100%;
+		margin: 0;
+		color: $color-white;
+	}
+
+	.team-member-position {
+		display: block;
+		width: 100%;
+		margin: 5px 0 0 0;
+		color: $color-white;
+	}
+
+	.entry-subtitle {
+		display: block;
+		width: 100%;
+		margin: $line-break 0 0 0;
+		color: $color-white;
+	}
+
+	.actions {
+		display: block;
+		width: 100%;
+		margin: $line-break-lg 0 0 0;
+	}
+
+	&.has-image {
+
+		.overlay {
+			opacity: 0.6;
+		}
+	}
+
+	&.simple {
+		padding: $section-pad-mobile 0;
+	
+		@include breakpoint(xs) {
+			padding: $section-pad-tablet 0;
+		}
+	
+		@include breakpoint(md) {
+			padding: $section-pad-desktop 0;
+		}
+	}
+}

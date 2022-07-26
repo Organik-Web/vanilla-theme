@@ -1,0 +1,133 @@
+//=======================================================================================================================================================
+// Events archive
+//=======================================================================================================================================================
+
+.jobs-archive {
+
+	.section-entry-list {
+		background-color: $color-light-grey;
+	}
+}
+
+.jobs-list {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + #{$gutters} * 2);
+	margin: (-$gutters);
+
+	.entry {
+		position: relative;
+		display: flex;
+		width: 100%;
+		padding: $gutters;
+
+		@include breakpoint(lg) {
+			width: 50%;
+		}
+
+		.entry-link {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners + 5px;
+			@include outset-link(5, 5);
+
+			@include on-state(hover, focus) {
+				color: $color-blue;
+
+				.title {
+					color: $color-blue;
+				}
+			}
+		}
+
+		.entry-wrapper {
+			position: relative;
+			display: flex;
+			flex-flow: wrap;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners;
+			box-shadow: $shadows;
+			transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+			overflow: hidden;
+		}
+
+		.entry-preview {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			background-color: $color-white;
+			padding: $container-pad-mobile;
+
+			@include breakpoint(xs) {
+				padding: 40px;
+			}
+
+			@include breakpoint(sm) {
+				padding: 50px;
+			}
+
+			@include breakpoint(md) {
+				width: 50%;
+			}
+		}
+
+		.entry-preview-content {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			max-width: $max-width-sm;
+		}
+
+		.title {
+			display: block;
+			width: 100%;
+			margin: 0;
+			color: $color-navy;
+			@include transition(color);
+		}
+
+		.meta {
+			display: block;
+			width: 100%;
+			margin: $line-break-xs 0 0 0;
+			color: $color-navy;
+			@include transition(color);
+		}
+
+		.excerpt {
+			display: block;
+			margin: $line-break 0 0 0;
+			width: 100%;
+			color: $color-navy;
+			@include transition(color);
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Single job
+//=======================================================================================================================================================
+
+.single-job {
+
+	.job-entry-actions {
+		display: inline-block;
+		width: 100%;
+		margin: $line-break-xl 0 0 0;
+
+		.primary-button {
+			width: 100%;
+		}
+	}
+}

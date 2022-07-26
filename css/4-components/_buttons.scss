@@ -1,0 +1,331 @@
+//=======================================================================================================================================================
+// Generic style resets for basic button elements
+//=======================================================================================================================================================
+
+button {
+    background: none;
+    border: 0;
+    overflow: visible;
+    vertical-align: inherit;
+    cursor: pointer;
+    @include transition();
+}
+
+
+
+//=======================================================================================================================================================
+// Primary buttons
+//=======================================================================================================================================================
+
+.primary-button,
+input[type="button"],
+input[type="submit"] {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 24px;
+    font-family: $font-1;
+    @include font-size($default-font-size-mobile);
+    font-weight: 600;
+    line-height: $default-line-height;
+    color: $color-white;
+    text-decoration: none;
+    background-color: $color-blue;
+    border: none;
+    border-radius: $corners;
+    @include transition(background, background-color, color, box-shadow);
+    cursor: pointer;
+
+    @include breakpoint(xs) {
+		@include font-size($default-font-size-desktop);
+	}
+
+    @include on-state(hover, focus) {
+        color: $color-white;
+        background-color: $color-navy;
+    }
+
+    &.white,
+    .inputs-light & {
+        color: $color-navy;
+        background-color: $color-white;
+
+        @include on-state(hover, focus) {
+            color: $color-white;
+            background-color: $color-blue;
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Secondary buttons
+//=======================================================================================================================================================
+
+.secondary-button {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    font-family: $font-1;
+    @include font-size($default-font-size-mobile);
+    font-weight: 600;
+    line-height: $default-line-height;
+    color: $color-navy;
+    text-decoration: none;
+    border-radius: $corners;
+    @include outset-link(8, 16);
+    @include transition();
+    cursor: pointer;
+
+    @include breakpoint(xs) {
+		@include font-size($default-font-size-desktop);
+	}
+
+    &:after {
+        @include pseudo-icon( e007, 12, $color-navy );
+        margin: 2px 0 0 12px;
+    }
+
+    @include on-state(hover, focus) {
+        color: $color-blue;
+
+        &:after {
+            transform: translateX($secondary-button-transform);
+            color: $color-blue;
+        }
+    }
+
+    &.white {
+        color: $color-white;
+
+        &:after {
+            color: $color-white;
+        }
+
+        @include on-state(hover, focus) {
+            color: $color-navy;
+
+            &:after {
+                color: $color-navy;
+            }
+        }
+    }
+
+    &.back {
+
+        &:before {
+            @include pseudo-icon( e006, 12, $color-navy );
+            margin: 2px 12px 0 0;
+        }
+
+        &:after {
+            display: none;
+        }
+
+        @include on-state(hover, focus) {
+            color: $color-blue;
+
+            &:before {
+                transform: translateX(-$secondary-button-transform);
+                color: $color-blue;
+            }
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Toggle sub menu buttons
+//=======================================================================================================================================================
+
+.toggle-sub-menu {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border-radius: $square-button-size;
+    cursor: pointer;
+
+    .icon {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $square-button-size;
+        min-width: $square-button-size;
+        height: $square-button-size;
+        @include transition();
+
+        &:after {
+            @include pseudo-icon( e009, 10, $color-navy );
+        }
+    }
+
+    @include on-state(hover, focus) {
+
+        .icon {
+
+            &:after {
+                color: $color-blue;
+            }
+        }
+    }
+
+    &.open {
+
+        .icon::after {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Video buttons
+//=======================================================================================================================================================
+
+.video-button {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    color: $color-white;
+    border-radius: $corners;
+    @include transition();
+
+    &:before {
+        @include pseudo-icon( e014, 14, $color-white );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        margin: 0 0 10px 0;
+        padding: 0 0 0 2px; // Bump the video icon to the right a little
+        border-radius: 100px;
+        border: $border-weight solid $color-white;
+        @include transition(color, border-color, background);
+
+        @include breakpoint(xs) {
+            width: 56px;
+            min-width: 56px;
+            height: 56px;
+        }
+    }
+
+    @include on-state(hover, focus) {
+        color: $color-blue;
+
+        &:before {
+            color: $color-blue;
+            border-color: $color-blue;
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Phone buttons
+//=======================================================================================================================================================
+
+.phone-button {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: $corners;
+    @include transition();
+
+    &:before {
+        @include pseudo-icon( e039, 16, $color-blue );
+        margin: 0 12px 0 -4px;
+    }
+
+    @include on-state(hover, focus) {
+        color: $color-blue;
+        background-color: rgba($color-navy, 0.04);
+    }
+
+    &.white {
+        color: $color-white;
+
+        &:before {
+            color: $color-white;
+        }
+
+        @include on-state(hover, focus) {
+            color: $color-navy;
+            background-color: $color-white;
+
+            &:before {
+                color: $color-blue;
+            }
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Shared styling for all buttons
+//=======================================================================================================================================================
+
+// Disabled and unique focus states for all button types
+button,
+input[type="button"],
+input[type="submit"],
+.primary-button,
+.secondary-button,
+.video-button,
+.phone-button {
+
+    &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: default;
+    }
+
+    // Remove the dotted outline FireFox puts on inputs when focused
+	&::-moz-focus-inner {
+		border: 0;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Button groups
+//=======================================================================================================================================================
+
+// Note: unlike lists with negative margins and width set to 100% + outset, we don't need to set this width to 100% + outset because buttons use their natural width
+// This also fixes a bug in Safari where the buttons may be contained in an element with auto width and the use of flexbox causes them to break onto two lines
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: (-$gutters-sm);
+
+    .primary-button,
+    .secondary-button,
+    .phone-button {
+        margin: $gutters-sm;
+    }
+}

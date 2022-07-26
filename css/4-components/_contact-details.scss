@@ -1,0 +1,76 @@
+//=======================================================================================================================================================
+// Company contact details
+//=======================================================================================================================================================
+
+.business-contact-details {
+
+    .contact-group {
+        display: flex;
+        align-items: flex-start;
+        margin: $line-break 0 0 0;
+
+        &:first-child {
+            margin: 0;
+        }
+
+        .group-label {
+			display: flex;
+			align-items: center;
+            margin: 0 $line-break-lg 0 0;
+
+            .label {
+                display: none;
+            }
+
+            .icon {
+                display: block;
+                width: 22px;
+                height: 22px;
+                margin: 2px 0 0 0;
+
+                &:after {
+                    @include pseudo-icon( e037, 20, $color-blue );
+                }
+
+                &.email:after {
+                    content: '\e037';
+                }
+
+                &.phone:after {
+                    content: '\e039';
+                }
+
+                &.fax:after {
+                    content: '\e040';
+                }
+
+                &.street-address:after {
+                    content: '\e041';
+                }
+
+                &.postal-address:after {
+                    content: '\e038';
+                }
+
+                &.opening-hours:after {
+                    content: '\e042';
+                }
+            }
+        }
+
+        a {
+            display: inline-block;
+            @include outset-link;
+            border-radius: $corners;
+        }
+
+        &.email {
+
+            a {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+    }
+}

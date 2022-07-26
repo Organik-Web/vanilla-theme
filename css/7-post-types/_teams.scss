@@ -1,0 +1,293 @@
+//=======================================================================================================================================================
+// Team members archive
+//=======================================================================================================================================================
+
+// .team-members-archive {
+
+	// .section-entry-list {
+	// 	background-color: $color-light-grey;
+	// }
+// }
+
+.team-members-list {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + #{$gutters} * 2);
+	margin: (-$gutters);
+
+	.entry {
+		position: relative;
+		display: flex;
+		width: 100%;
+		padding: $gutters;
+
+		@include breakpoint(xs) {
+			width: 50%;
+		}
+
+		@include breakpoint(md) {
+			width: 33.33336%;
+		}
+
+		@include breakpoint(lg) {
+			width: 25%;
+		}
+
+		.entry-link {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners + 5px;
+			@include outset-link(5, 5);
+
+			@include on-state(hover, focus) {
+				color: $color-blue;
+
+				.name, .position {
+					color: $color-blue;
+				}
+			}
+		}
+
+		.entry-wrapper {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			border-radius: $corners;
+			transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+			overflow: hidden;
+		}
+
+		.ratio-sizer {
+			position: relative;
+			overflow: hidden;
+			display: block;
+			width: 100%;
+			padding-top: 80%;
+		}
+
+		.entry-thumb {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			min-width: 100%;
+			min-height: 100%;
+			height: auto;
+			width: auto;
+			object-fit: cover;
+		}
+
+		.entry-preview {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-grow: 1;
+			text-align: center;
+			width: 100%;
+			margin: $line-break-xl 0 0 0;
+		}
+
+		.entry-preview-content {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			width: 100%;
+			max-width: $max-width-xs;
+		}
+
+		.name {
+			display: block;
+			margin: 0;
+			width: 100%;
+			color: $color-navy;
+			@include transition(color);
+		}
+
+		.position {
+			display: block;
+			margin: 5px 0 0 0;
+			width: 100%;
+			color: $color-navy;
+			@include transition(color);
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Single team member
+//=======================================================================================================================================================
+
+.single-team-member {
+
+	.section-team-member-articles {
+		background-color: $color-light-grey;
+	}
+
+	.team-member-thumb {
+		position: relative;
+		display: block;
+		width: 100%;
+		background-color: $color-mid-grey;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-radius: $corners;
+
+		.ratio-sizer {
+			display: block;
+			padding-top: 80%;
+
+			@include breakpoint(md) {
+				padding-top: 100%;
+			}
+		}
+	}
+
+	.team-member-entry-meta {
+		display: inline-block;
+		width: 100%;
+		margin: $paragraph-break 0 0 0;
+		padding: $paragraph-break 0 0 0;
+		border-top: $border-weight solid $color-mid-grey;
+
+		.meta-wrap {
+			display: flex;
+			flex-wrap: wrap;
+			width: calc(100% + #{$gutters} * 2);
+			margin: (-$gutters-sm) (-$gutters);
+		}
+
+		.meta-group {
+			position: relative;
+			display: flex;
+			align-items: center;
+			max-width: 100%;
+			padding: $gutters-sm $gutters;
+		}
+
+		.group-label {
+			display: flex;
+			align-items: center;
+			margin: 0 $line-break-sm 0 0;
+
+			.label {
+				display: none;
+			}
+
+			.icon {
+				display: block;
+				width: 18px;
+				min-width: 18px;
+
+				&.phone {
+
+					&:before {
+						@include pseudo-icon( e039, 15, $color-blue );
+					}
+				}
+
+				&.email {
+
+					&:before {
+						@include pseudo-icon( e037, 16, $color-blue );
+					}
+				}
+			}
+		}
+
+		.group-content {
+			display: flex;
+			flex-wrap: wrap;
+			flex-grow: 1;
+			width: 50%;
+
+			a {
+				display: block;
+				@include outset-link;
+				border-radius: $corners;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Single post team author avator
+//=======================================================================================================================================================
+
+.orgnk-teams-author-avatar {
+	display: flex;
+	align-items: center;
+	width: 100%;
+
+	.author-image {
+		position: relative;
+		display: block;
+		width: 70px;
+		background-color: $color-mid-grey;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-radius: 100px;
+		transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+		overflow: hidden;
+
+		.ratio-sizer {
+			display: block;
+			padding-top: 100%;
+		}
+	}
+
+	.author-meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		flex-grow: 1;
+		margin: 0 0 0 $line-break;
+		padding: 5px 0;
+
+		.author-link {
+			display: inline-block;
+			@include outset-link();
+			border-radius: $corners;
+
+			@include on-state(hover, focus) {
+
+				.author-name {
+					color: $color-blue;
+				}
+			}
+		}
+
+		.author-name {
+			display: block;
+			margin: 0;
+			@include transition();
+		}
+	}
+
+	.post-attributes {
+
+		.posted-in {
+
+			a {
+				@include outset-link;
+				border-radius: $corners;
+			}
+		}
+	}
+}

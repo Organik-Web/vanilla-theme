@@ -1,0 +1,229 @@
+//=======================================================================================================================================================
+// Login page
+//=======================================================================================================================================================
+
+// Local variables
+$login-page-bg: $color-light-grey;
+$login-box-bg: $color-white;
+
+html {
+	background: $login-page-bg none repeat scroll 0 0;
+	font-size: 6.25%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	font-variant-ligatures: normal;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body.login-action-login {
+	display: flex;
+	flex-direction: column;
+	background-color: $login-page-bg;
+	font-family: $font-1;
+	font-size: 14px;
+	font-weight: 300;
+	color: $color-navy;
+
+	a {
+		color: $color-navy;
+		@include transition();
+
+		&:hover,
+		&:focus {
+			color: $color-blue;
+		}
+	}
+
+	#login {
+		padding: 100px $container-pad-mobile;
+		background: $login-page-bg;
+		margin: auto;
+		min-width: 362px; // Min width to match reCAPTCHA width
+	}
+
+	// Logo
+	h1 a {
+		display: block;
+		margin: 0 auto $paragraph-break auto;
+		padding: 0;
+		width: 225px;
+		height: 64px;
+		line-height: 1;
+		color: $color-navy;
+		text-decoration: none;
+		background-image: url('../images/logos/logo-full.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		overflow: hidden;
+
+		&:hover,
+		&:focus {
+			opacity: 0.6;
+		}
+	}
+
+	p {
+		margin: 0 0 $line-break 0;
+
+		&.forgetmenot {
+			display: block;
+			width: 100%;
+			padding: 0 0 $line-break 0;
+
+			label {
+				position: relative;
+				top: 1px;
+				margin: 0;
+				width: auto;
+			}
+		}
+	}
+
+	label {
+		width: 100%;
+		margin: 0 0 $line-break-xs 0;
+	}
+
+	// Main login box
+	form {
+		margin: $paragraph-break 0;
+		padding: 30px;
+		background: $login-box-bg none repeat scroll 0 0;
+		border: none;
+		border-radius: $corners;
+		box-shadow: $shadows;
+		overflow: hidden;
+		@include transition();
+
+		.input {
+			margin: 0 0 $line-break 0;
+			padding: 0 $input-padding;
+			width: 100%;
+			height: $input-height;
+			font-size: 14px;
+			font-weight: normal;
+			color: $color-navy;
+			background: $login-box-bg;
+			background-position-x: 95% !important;
+			border: $border-weight solid $color-mid-grey;
+			border-radius: $corners;
+			box-shadow: none;
+			@include transition();
+
+			&:hover,
+			&:focus {
+				border-color: $color-blue;
+				outline: none;
+			}
+		}
+	}
+
+	// Show/hide password toggle
+	.button.wp-hide-pw {
+		right: 5px;
+		top: 5px;
+		color: $color-navy;
+
+		.dashicons {
+			width: 20px;
+			height: 20px;
+			top: 4px;
+		}
+	}
+
+	// 'Remember me' checkbox
+	input[type="checkbox"],
+	input[type="radio"] {
+		margin: 0 10px 0 0;
+		width: 26px;
+		height: 26px;
+		background: $login-box-bg;
+		border: $border-weight solid $color-mid-grey;
+		border-radius: 100px;
+		box-shadow: none;
+		@include transition();
+
+		&:hover,
+		&:focus {
+			border-color: $color-blue;
+			outline: none;
+		}
+	}
+
+	// 'Remember me' checkbox ticked
+	input[type="checkbox"]:checked:before {
+		margin: 2px 0 0 0;
+		width: 22px;
+		height: 22px;
+		font-size: 22px;
+	}
+
+	#nav,
+	.privacy-policy-page-link {
+		margin: $line-break 0 0 0;
+		padding: 0;
+		width: 100%;
+		font-size: 14px;
+		text-align: center;
+
+		a {
+			color: $color-navy;
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				color: $color-blue;
+			}
+		}
+	}
+
+	#backtoblog {
+		display: none;
+	}
+
+	#login_error,
+	.message,
+	.success {
+		margin: $paragraph-break 0 0 0;
+		padding: 0;
+		text-align: center;
+		background-color: unset;
+		border: none;
+		box-shadow: none;
+	}
+
+	.button-primary,
+	.wp-core-ui .button,
+	.wp-core-ui .button.button-large,
+	.wp-core-ui .button-group.button-large .button {
+		float: none;
+		margin: 0 !important;
+		padding: 0 $input-padding;
+		width: 100%;
+		height: $input-height;
+		font-size: 13px !important;
+		font-weight: 600;
+		line-height: 1 !important;
+		color: $color-white;
+		text-decoration: none;
+		text-shadow: none;
+		background: $color-blue;
+		border: none;
+		border-radius: $corners;
+		box-shadow: none;
+		@include transition();
+
+		&:hover,
+		&:focus {
+			background: $color-navy;
+		}
+	}
+
+	.g-recaptcha-wrap {
+		padding: 0 !important;
+		margin: 0 0 $line-break 0;
+	}
+}

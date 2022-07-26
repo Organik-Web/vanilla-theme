@@ -1,0 +1,353 @@
+{
+    "key": "group_5f73d6bd0f90d",
+    "title": "Flexible Sections",
+    "fields": [
+        {
+            "key": "field_5f73d6c80e2b3",
+            "label": "Sections",
+            "name": "flexi_sections",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_5fbb5e9cbd563": {
+                    "key": "layout_5fbb5e9cbd563",
+                    "name": "simple-content",
+                    "label": "Simple Content Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5fbb5e9cbd56d",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6038a8481a748"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5f73d6d01f648": {
+                    "key": "layout_5f73d6d01f648",
+                    "name": "split-content",
+                    "label": "Split Content Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6038a8ffa6274",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6038a8b61e423"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5faa114fa176d": {
+                    "key": "layout_5faa114fa176d",
+                    "name": "cover-content",
+                    "label": "Cover Image Content Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6038a95dee641",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6038a91b4d632"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5faccfcf1873c": {
+                    "key": "layout_5faccfcf1873c",
+                    "name": "cards-list",
+                    "label": "Cards Grid Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6038a9c393a5e",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6038a982a80c1"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6068fbe7163c3": {
+                    "key": "layout_6068fbe7163c3",
+                    "name": "simple-cards-list",
+                    "label": "Simple Cards Grid Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6068fbe7163c4",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6034c4e5752fc"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5fb5fe44e607e": {
+                    "key": "layout_5fb5fe44e607e",
+                    "name": "highlights-list",
+                    "label": "Highlights Grid Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6038aa3424c93",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6038a9e1371c1"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5fb604fd4b05b": {
+                    "key": "layout_5fb604fd4b05b",
+                    "name": "pricing-list",
+                    "label": "Pricing Grid Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60399507c17a5",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6039948761109"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5fb61da3ad32e": {
+                    "key": "layout_5fb61da3ad32e",
+                    "name": "call-to-action",
+                    "label": "Call to Action Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_6039959a682f2",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6039953197c4e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_60752ac0ef2f5": {
+                    "key": "layout_60752ac0ef2f5",
+                    "name": "two-column-content",
+                    "label": "Two Column Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60752ac0ef2f6",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_607529010f47a"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_60f535c2b006a": {
+                    "key": "layout_60f535c2b006a",
+                    "name": "tabs",
+                    "label": "Simple Tabs Section",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_60f535c2b006b",
+                            "label": "Cloned Fields",
+                            "name": "cloned_fields",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_60adc6c7d89cc"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/flexi-sections.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1626682979
+}

@@ -1,0 +1,177 @@
+//=======================================================================================================================================================
+// Section type - tab content
+//=======================================================================================================================================================
+
+.section-tab-content {
+    flex-grow: 1;
+
+    .orgnk-tabs {
+        position: relative;
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .tabs-list {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+
+        @include breakpoint(md) {
+            width: 33.33336%;
+            margin: 0;
+            padding: 0 6% 0 0;
+        }
+
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: $focus-ring-weight 0; // Allow enough space between each button for the focus ring to be visible
+            background-color: $color-white;
+
+            @include breakpoint(md) {
+                background-color: transparent;
+            }
+
+            &:not(:last-of-type) {
+                margin: 0 0 $line-break-xs 0;
+            }
+
+            // Button element
+            .orgnk-tab {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                text-align: left;
+                overflow-anchor: none; // This fixes a bug in Chrome where the use of jQuery slide animations causes Chrome to scroll the page while animating
+                opacity: 1; // We're using JS to disable the buttons when active, so we need to override the default disabled input styling
+                z-index: 0;
+                margin: 0 $line-break;
+                @include transition(box-shadow, z-index 0.5s step-end);
+
+                @include breakpoint(md) {
+                    margin: 0;
+                    margin-left: (-$line-break);
+                    width: calc(100% + #{$line-break});
+                }
+
+                .button-inner {
+                    position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    padding: $line-break 0;
+                    @include transition(box-shadow, background);
+
+                    @include breakpoint(md) {
+                        padding: $line-break-xs 0 $line-break-xs $line-break;
+                    }
+                }
+
+                .button-label {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                    color: $color-navy;
+                    @include transition(color);
+                }
+
+                // Accordion arrow for the mobile/tablet accordion state, hidden on desktop
+                .accordion-arrow {
+                    display: block;
+                    margin: 2px 0 0 30px;
+                    @include transition(opacity, transform);
+
+                    @include breakpoint(md) {
+                        opacity: 0;
+                        transform: translateX(-10px);
+                    }
+
+                    &:after {
+                        @include pseudo-icon( e009, 14, $color-blue );
+
+                        @include breakpoint(md) {
+                            content: '\e003';
+                            @include font-size(20);
+                        }
+                    }
+                }
+
+                &.active {
+
+                    .button-label {
+                        color: $color-blue;
+                    }
+
+                    .accordion-arrow {
+                        opacity: 1;
+                        transform: translate(0,0);
+
+                        &:after {
+                            color: $color-blue;
+
+                            @include breakpoint(0,md) {
+                                transform: rotate(-180deg);
+                            }
+                        }
+                    }
+                }
+
+                @include on-state(hover, focus) {
+
+                    .accordion-arrow {
+                        opacity: 1;
+                        transform: translate(0, 0);
+                    }
+                }
+            }
+
+            // Tab content panels, slides up/down on mobile and fades on desktop
+            .tab-content {
+                display: none;
+                width: 100%;
+                margin:  -20px 25px 20px 25px;
+                opacity: 0;
+                visibility: hidden;
+                @include transition(opacity, visibility);
+
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                @include breakpoint(md) {
+                    display: block !important; // Overriding JS inline styles applied by using show/hide functions
+                    position: absolute;
+                    top: 0;
+                    left: 33.33336%;
+                    width: 66.66667%;
+                    padding: 0 60px;
+                    margin: 5px 0 0 0;
+                }
+
+                .title {
+
+                    @include breakpoint(0,md) {
+                        display: none;
+                    }
+                }
+
+                .content {
+                    margin: 0;
+
+                    @include breakpoint(0,md) {
+                        margin: $line-break-xs 0 0 0;
+                    }
+
+                    .actions {
+                        padding-top: $line-break;
+                    }
+                }
+            }
+        }
+    }
+}

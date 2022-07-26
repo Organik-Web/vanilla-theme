@@ -1,0 +1,480 @@
+//=======================================================================================================================================================
+// General section styling
+//=======================================================================================================================================================
+
+.section {
+	position: relative;
+	width: 100%;
+	box-shadow: none; // Prevent the focus ring showing when a section is a link target
+	overflow: hidden;
+
+	&.allow-overflow {
+		overflow: initial;
+	}
+
+    .section-wrap {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.section-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+
+		.content-wrap {
+			position: relative;
+			display: flex;
+    		flex-direction: column;
+			max-width: $max-width-xl;
+			width: 100%;
+		}
+
+		.title {
+			display: block;
+			width: 100%;
+			margin: 0;
+		}
+
+		.content {
+			display: block;
+			width: 100%;
+			margin: $line-break 0 0 0;
+		}
+
+		.actions {
+			display: block;
+			width: 100%;
+			margin: $line-break-lg 0 0 0;
+		}
+	}
+
+	.section-list {
+		position: relative;
+		width: 100%;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section columns - widths are set on per-use basis
+//=======================================================================================================================================================
+
+.section {
+
+	.section-column-wrap {
+		width: calc(100% + (#{$column-pad-mobile * 2}));
+		margin: 0 (-$column-pad-mobile);
+
+		@include breakpoint(sm) {
+			width: calc(100% + (#{$column-pad-tablet * 2}));
+			margin: 0 (-$column-pad-tablet);
+		}
+
+		@include breakpoint(lg) {
+			width: calc(100% + (#{$column-pad-desktop * 2}));
+			margin: 0 (-$column-pad-desktop);
+		}
+	}
+
+	.section-column {
+		padding: 0 $column-pad-mobile;
+
+		@include breakpoint(sm) {
+			padding: 0 $column-pad-tablet;
+		}
+
+		@include breakpoint(lg) {
+			padding: 0 $column-pad-desktop;
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section padding
+//=======================================================================================================================================================
+
+.section-pad {
+	padding: $section-pad-mobile 0;
+
+	@include breakpoint(xs) {
+		padding: $section-pad-tablet 0;
+	}
+
+	@include breakpoint(md) {
+		padding: $section-pad-desktop 0;
+	}
+}
+
+.section-pad-top {
+	padding: $section-pad-mobile 0 0 0;
+
+	@include breakpoint(xs) {
+		padding: $section-pad-tablet 0 0 0;
+	}
+
+	@include breakpoint(md) {
+		padding: $section-pad-desktop 0 0 0;
+	}
+}
+
+.section-pad-bottom {
+	padding: 0 0 $section-pad-mobile 0;
+
+	@include breakpoint(xs) {
+		padding: 0 0 $section-pad-tablet 0;
+	}
+
+	@include breakpoint(md) {
+		padding: 0 0 $section-pad-desktop 0;
+	}
+}
+
+.section {
+
+	&.pad-top-none {
+		padding-top: 0;
+	}
+
+	&.pad-bottom-none {
+		padding-bottom: 0
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section colors
+//=======================================================================================================================================================
+
+.section {
+
+	&.section-light {
+		background-color: $color-light-grey;
+	}
+
+	&.section-white {
+		background-color: $color-white;
+	}
+
+    &.section-dark {
+		color: $color-white;
+		background-color: $color-navy;
+
+		.editor-content {
+
+			ul > li::before {
+				background-color: $color-white;
+			}
+
+			blockquote:before {
+				background-image: url(../images/quotation-white.svg);
+				opacity: 0.2;
+			}
+
+			a {
+
+				&:not([class]),
+				&[class=""] {
+					color: $color-white;
+					border-color: rgba($color-white, 0.2);
+
+					@include on-state(hover, focus) {
+						color: $color-white;
+						border-color: $color-white;
+					}
+				}
+			}
+		}
+
+		// Any title and subtitle elements
+		.title, .subtitle {
+			color: $color-white;
+		}
+
+		// FAQs accordion
+		.orgnk-faqs.type-accordion {
+
+			.faqs-list {
+				border-color: rgba($color-white, 0.3);
+			}
+
+			.entry {
+				border-color: rgba($color-white, 0.3);
+
+				@include on-state(hover, focus-within) {
+					border-color: $color-white;
+				}
+
+				.question {
+					color: $color-white;
+
+					.icon:after {
+						color: rgba($color-white, 0.3);
+					}
+
+					@include on-state(hover, focus) {
+						color: $color-white;
+
+						.icon:after {
+							color: $color-white;
+						}
+					}
+				}
+			}
+		}
+
+		.section-tab-content .tabs-list .tab .orgnk-tab {
+			&:not(.active) {
+				.button-label {
+					color: $color-white;
+				}
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section header
+//=======================================================================================================================================================
+
+.section-header {
+	position: relative;
+    display: flex;
+	width: 100%;
+	margin: 0 0 $paragraph-break 0;
+
+	&.margin-lg {
+
+		@include breakpoint(md) {
+			margin: 0 0 $paragraph-break-lg 0;
+		}
+	}
+
+	.section-header-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.section-header-content {
+		display: block;
+		width: 100%;
+		max-width: $max-width-lg;
+	}
+
+	.section-header-actions {
+		display: block;
+		margin: $line-break-lg 0 0 0;
+
+		&.hide-mobile {
+
+			@include breakpoint(0,sm) {
+				display: none;
+			}
+		}
+	}
+
+	.title {
+		display: block;
+		width: 100%;
+		margin: 0;
+	}
+
+	.subtitle {
+		display: block;
+		width: 100%;
+		margin: $line-break 0 0 0;
+	}
+
+	// Split style
+	&.split {
+
+		.section-header-wrap {
+
+			@include breakpoint(sm) {
+				flex-wrap: nowrap;
+				flex-direction: row;
+				justify-content: space-between;
+				text-align: left;
+			}
+		}
+
+		.section-header-content {
+
+			@include breakpoint(sm) {
+				width: 50%;
+				flex-grow: 1;
+				padding: 0 $paragraph-break 0 0;
+			}
+		}
+
+		.section-header-actions {
+
+			@include breakpoint(sm) {
+				margin: 0;
+			}
+		}
+	}
+
+	// Centered style
+	&.centered {
+
+		.section-header-wrap {
+			align-items: center;
+			text-align: center;
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section footer
+//=======================================================================================================================================================
+
+.section-footer {
+	position: relative;
+	display: flex;
+	width: 100%;
+	margin: $paragraph-break 0 0 0;
+
+	&.hide-desktop {
+
+		@include breakpoint(sm) {
+			display: none;
+		}
+	}
+
+	.section-footer-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Section sub content - shared styling for simple content and split content section types
+//=======================================================================================================================================================
+
+.section-split-content,
+.section-simple-content,
+.section-two-column-content {
+
+	.section-media {
+		position: relative;
+		display: flex;
+
+		.image {
+			position: relative;
+			width: 100%;
+			max-height: 500px;
+			border-radius: $corners;
+		}
+
+		.ratio-sizer {
+			position: relative;
+			display: block;
+			width: 100%;
+			padding-top: 56.25%;
+			overflow: hidden;
+
+			@include breakpoint(md) {
+				min-height: 400px;
+			}
+		}
+
+		.image-cover {
+			flex-grow: 1;
+			background-image: url('../images/default-thumb.svg');
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			min-width: 100%;
+			min-height: 100%;
+			height: auto;
+			width: auto;
+			object-fit: cover;
+		}
+
+		.video-button {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background-color: rgba($color-navy-dark, 0.7);
+			border-radius: $corners;
+
+			@include on-state(hover, focus) {
+				background-color: rgba($color-navy-dark, 0.85);
+			}
+		}
+
+		.orgnk-gmap {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			min-height: initial;
+		}
+	}
+
+	.section-sub-content {
+		display: block;
+		width: 100%;
+		margin: $paragraph-break 0 0 0;
+		padding: $paragraph-break 0 0 0;
+		border-top: $border-weight solid $color-mid-grey;
+	}
+
+	.section-list {
+
+		.list-label {
+			display: block;
+			width: 100%;
+			font-weight: 600;
+			margin: 0 0 $line-break 0;
+		}
+
+		ul.simple-list {
+			margin: (-7px) 0;
+			list-style: none;
+			list-style-position: outside;
+			columns: 1;
+			column-gap: $column-pad-desktop;
+
+			@include breakpoint(sm) {
+				columns: 2;
+			}
+
+			> li {
+				position: relative;
+				padding: 7px 0;
+				break-inside: avoid;
+			}
+
+			a {
+				@include outset-link();
+				border-radius: $corners;
+			}
+		}
+	}
+}

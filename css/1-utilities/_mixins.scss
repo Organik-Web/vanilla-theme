@@ -1,0 +1,239 @@
+//=======================================================================================================================================================
+// Breakpoint mixin
+//=======================================================================================================================================================
+
+// Takes either a predfined string or custom px values
+// breakpoint(xs,0)       		Setting only a min-width breakpoint
+// breakpoint(0,xs)       		Setting only a max-width breakpoint
+// breakpoint(xs,md)   			Setting a min-width and max-width breakpoint
+// Note: any predefined breakpoints passed to the max property will have 1px subtracted
+// Any custom px values passed will apply to both min and max properties without being modified
+
+@mixin breakpoint( $min: 0, $max: 0, $unit: px ) {
+
+	$points : (
+        xxs: 400,
+        xs: 560,
+        sm: 768,
+        md: 1024,
+        lg: 1200,
+        xl: 1400,
+        xxl: 1600
+    );
+
+    $selectors: (
+        min: $min,
+        max: $max
+    );
+
+    $query: null;
+
+    @each $key, $selector in $selectors {
+
+        @if $selector != 0 {
+
+        	@if type-of($selector) == string and map-has-key($points, $selector) {
+
+        	    $point: map-get($points, $selector);
+
+        	    @if $key == max {
+                    $point: $point - 1;
+        	    }
+
+        	    $selector-query: 'and (#{$key}-width: #{$point}#{$unit})';
+        	    $query: append($query, $selector-query);
+
+        	} @else if type-of($selector) == number {
+
+        	    $selector-query: 'and (#{$key}-width: #{$selector}#{$unit})';
+        	    $query: append($query, $selector-query);
+
+        	}
+    	}
+    }
+
+    @if $query != null {
+        $query: append('only screen', $query);
+        @media #{$query} {
+			@content;
+		}
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Hover/focus/active states mixin - ties into what-input.js to disable hover states on touch devices using the intent parameter
+//=======================================================================================================================================================
+
+@mixin on-state( $targets... ) {
+
+	$states: hover, focus, focus-within, active;
+	$selectors: null;
+
+	@if $targets != null {
+		@each $target in $targets {
+			@if index($states, $target) {
+				$selectors: append($selectors, "html:not([data-whatintent='touch']) &:#{$target}", comma);
+			} @else {
+				@warn "'#{$target}' is not a valid state.";
+			}
+		}
+	} @else {
+		@warn "No states have been specified.";
+	}
+
+	@if $selectors != null {
+    	#{$selectors} {
+    		@content;
+    	}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Inset focus mixing - inset focus ring for elements that need it
+//=======================================================================================================================================================
+
+@mixin inset-focus {
+	[data-whatintent='keyboard'] &:focus {
+		box-shadow: $focus-ring-inset;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Font size mixin - takes a size argument as number
+//=======================================================================================================================================================
+
+@mixin font-size( $size: 16 ) {
+	font-size: $size + px;
+	font-size: $size + rem;
+}
+
+
+
+//=======================================================================================================================================================
+// Transitions mixin
+//=======================================================================================================================================================
+
+// Accepts a list of strings and organises their output
+// You can include whatever properties you need for each selector and this mixin will determine when to use default properties
+// For example: transition(color 5s linear, box-shadow) will return "transition: color 5s linear, box-shadow 0.3s ease-in-out"
+// Note: you must write each argument string in the exact order you would for a normal CSS transition property e.g. prop duration easing delay
+// So if you need to only change you duration then you would include transition(all 0.5s)
+
+@mixin transition($transitions...) {
+
+	$output: null;
+
+	@each $transition in $transitions {
+	  	$output: append($output, compile_transition($transition), comma);
+	}
+
+	@if $output != null {
+		transition: $output;
+	} @else {
+		transition: compile_transition(); // Run the below function with empty parameters to generate a basic transition property e.g. 0.3s ease-in-out
+	}
+}
+
+// Function for transition() mixin to pull apart the supplied transition string and assemble the various properties for output
+@function compile_transition($transition: all) {
+
+	// Default values
+	$selector: all;
+	$duration: $default-transitions;
+	$easing: ease-in-out;
+	$delay: null;
+	$default-props: ($selector, $duration, $easing, $delay);
+
+	// Find transition properties if they exist
+	$final-prop: null;
+
+	@for $i from 1 through length($default-props) {
+
+		$prop-value: null;
+
+		@if $i <= length($transition) {
+			$prop-value: nth($transition, $i)
+		} @else {
+			$prop-value: nth($default-props, $i)
+		}
+
+		$final-prop: append($final-prop, $prop-value);
+	}
+
+	@return $final-prop;
+}
+
+
+
+//=======================================================================================================================================================
+// pseudo icon mixin - generate a pseudo icon using the ui-icons font
+//=======================================================================================================================================================
+@mixin pseudo-icon( $unicode, $size, $color, $weight: normal ) {
+	content: unquote("\"\\#{$unicode}\"");
+	display: block;
+	font-family: $ui-icons;
+	@include font-size($size);
+	line-height: $size + px;
+	font-weight: $weight;
+	color: $color;
+	padding: 1px;
+	backface-visibility: hidden;
+	transform: translateZ(0) scale(1.0, 1.0);
+	@include transition();
+}
+
+
+
+
+//=======================================================================================================================================================
+// Outset link mixin - adds area around the link while keeping the link in the same position
+//=======================================================================================================================================================
+
+@mixin outset-link( $vertical: 4, $horizontal: 10, $unit: px ) {
+	margin: (-$vertical + $unit) (-$horizontal + $unit);
+	padding: ($vertical + $unit) ($horizontal + $unit);
+}
+
+
+
+//=======================================================================================================================================================
+// Strip unit function - takes a string and strips any non numerical characters, for example 42px becomes 42
+//=======================================================================================================================================================
+
+@function strip-unit( $number ) {
+	@if type-of( $number ) == 'number' and not unitless( $number ) {
+	  	@return $number / ( $number * 0 + 1 );
+	}
+	@return $number;
+}
+
+
+
+//=======================================================================================================================================================
+// Encode color function - takes a string, converts text colors to their hexidecimal value and returns data URI ready color string
+//=======================================================================================================================================================
+
+@function encode-color( $color ) {
+	@if type-of( $color ) == 'color' {
+        $hex: str-slice( ie-hex-str( $color ), 4 );
+        $color: unquote( "#{$hex}" );
+    }
+    $color: '%23' + $color;
+	@return $color;
+}
+
+
+
+//=======================================================================================================================================================
+// Select input arrow function - returns a data URI SVG as a background image property, mainly used for customising the default <select> styling
+//=======================================================================================================================================================
+
+@mixin select-arrow( $color ) {
+	background-image: url("data:image/svg+xml,%3Csvg enable-background='new 0 0 250 250' viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m125 195c-4.1 0-8.2-1.5-11.3-4.6l-109-108c-6.2-6.2-6.3-16.4-.1-22.7s16.4-6.3 22.6-.1l97.8 96.9 97.7-96c6.3-6.2 16.5-6.1 22.6.2 6.2 6.3 6.1 16.4-.2 22.6l-109 107.1c-3 3.1-7 4.6-11.1 4.6z' fill='#{encode-color($color)}'/%3E%3C/svg%3E"); // This is the 'short down arrow' from the ui icons font convert to data URI
+}

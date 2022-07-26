@@ -1,0 +1,207 @@
+//=======================================================================================================================================================
+// Sidebar
+//=======================================================================================================================================================
+
+.sidebar {
+
+    // Local variables for sidebar
+    $sidebar-pad-mobile: 20px;
+    $sidebar-pad-desktop: 40px;
+    $sidebar-link-vertical-offset: 7px;
+    $sidebar-link-horizontal-offset: 15px;
+
+    width: 100%;
+    background-color: $color-white;
+    border-radius: $corners;
+    box-shadow: $shadows;
+    @include transition(box-shadow);
+
+    @include breakpoint(md) {
+        margin: (-$sidebar-pad-desktop) 0 0 0;
+    }
+
+    @include on-state(hover, focus-within) {
+        box-shadow: $shadows-lg;
+    }
+
+    // We're toggling sticky behaviour with a class because jQuery doesn't apply this properly in all browsers
+    &.is-sticky {
+        position: sticky;
+    }
+
+    .sidebar-wrap {
+        width: 100%;
+        padding: $sidebar-pad-mobile;
+        overflow: hidden;
+
+        @include breakpoint(xs) {
+            padding: $sidebar-pad-desktop;
+        }
+    }
+
+    .sidebar-menu {
+        position: relative;
+
+        ul.menu {
+            position: relative;
+            margin: (-$sidebar-link-vertical-offset) 0; // Crop off unwanted padding from first and last links
+            padding: 0;
+
+            // All list items
+            li {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+
+                // Dropdown arrow
+                .toggle-sub-menu {
+                    margin: 0 -15px 0 ($sidebar-link-horizontal-offset * 2); // Double the margin to compensate for the <a> negative margin
+                }
+                
+                a {
+                    position: relative;
+                    display: block;
+                    width: 50%;
+                    flex-grow: 1;
+                    padding: $sidebar-link-vertical-offset $sidebar-link-horizontal-offset;
+                    margin: 0 (-$sidebar-link-horizontal-offset);
+                    border-radius: $corners;
+
+                    .current-marker {
+                        content: '';
+                        display: none;
+                        height: 22px;
+                        width: 2px;
+                        background-color: $color-blue;
+                        position: absolute;
+                        top: 50%;
+                        left: ( - ( $sidebar-pad-mobile - $sidebar-link-horizontal-offset ) );
+                        transform: translateY(-50%);
+
+                        @include breakpoint(xs) {
+                            left: ( - ( $sidebar-pad-desktop - $sidebar-link-horizontal-offset ) );
+                        }
+                    }
+                    
+                    @include on-state(hover, focus) {
+                        color: $color-blue;
+                    }
+                }
+
+                &.parent-menu-item {
+
+                    a {
+                        display: block;
+                        padding: $sidebar-link-vertical-offset $sidebar-link-horizontal-offset;							
+                        margin: 0 (-$sidebar-link-horizontal-offset) 5px (-$sidebar-link-horizontal-offset);
+                    }
+                }
+
+                &.current-menu-item {
+
+                    > a {
+                        color: $color-blue;
+                        font-weight: 600;
+
+                        .current-marker {
+                            display: block;
+                        }
+                    }
+                }
+
+                ul.sub-menu {
+                    display: none;
+                    width: 100%;
+                    margin: 0 0 0 $sidebar-link-horizontal-offset;
+
+                    li {
+                        border: none;
+
+                        a {
+                            margin: 0 (-$sidebar-link-horizontal-offset);
+                        }
+                    }
+                }
+
+                // For pages that do not have children/dropdown arrow, add an empty spacer in place of the dropdown button to force all <a> elements to have the same right position
+                &:not(.menu-item-has-children) {
+
+                    // This element must be equal to the visual width (remember negative margins are in play) of the dropdown menu trigger
+                    &:after {
+                        content: '';
+                        display: block;
+                        width: 45px;
+                        width: ( $square-button-size - 15px + ( $sidebar-link-horizontal-offset * 2 ) );
+                        height: 1px;
+                        pointer-events: none;
+                    }
+                }
+
+                // For each depth level, push the current marker further to the left to offset the sub menu indentation
+                // Incriments up by the value of $sidebar-link-horizontal-offset for each level, 4 levels is the maximum the nav walker allows
+                @for $i from 2 through 4 {
+
+                    &.depth-level-#{$i} {
+
+                        > a {
+
+                            .current-marker {
+                                left: ( - ( $sidebar-pad-mobile - $sidebar-link-horizontal-offset + ( $sidebar-link-horizontal-offset * ( $i - 1 ) ) ) );
+
+                                @include breakpoint(xs) {
+                                    left: ( - ( $sidebar-pad-desktop - $sidebar-link-horizontal-offset + ( $sidebar-link-horizontal-offset * ( $i - 1 ) ) ) );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .widget {
+        position: relative;
+        margin: $sidebar-pad-mobile 0 0 0;
+        padding: $sidebar-pad-mobile 0 0 0;
+        border-top: $border-weight solid $color-mid-grey;
+
+        @include breakpoint(xs) {
+            margin: $sidebar-pad-desktop 0 0 0;
+            padding: $sidebar-pad-desktop 0 0 0;
+        }
+
+        span.h3 {
+            display: block;
+        }
+
+        a {
+            display: inline-block;
+            @include outset-link(7, 15);
+            border-radius: $corners;
+        }
+
+        ul {
+
+            li {
+                line-height: 1.4;
+
+                a {
+                    margin: 0 -15px;
+                }
+            }
+        }
+    }
+
+    &.no-menu {
+
+        .widget {
+
+            &:first-child {
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+        }
+    }
+}

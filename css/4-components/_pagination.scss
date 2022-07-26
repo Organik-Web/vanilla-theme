@@ -1,0 +1,118 @@
+//=======================================================================================================================================================
+// Pagination
+//=======================================================================================================================================================
+
+.archive-navigation {
+    width: 100%;
+    margin: $section-pad-mobile 0 0 0;
+
+	@include breakpoint(xs) {
+		margin: $section-pad-tablet 0 0 0;
+	}
+
+	@include breakpoint(md) {
+		margin: $section-pad-desktop 0 0 0;
+	}
+}
+
+.pagination {
+    display: flex;
+	padding: 0;
+    margin: 0;
+    width: 100%;
+
+    ul.pages {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        margin: 0 -2px;
+        width: calc(100% + 4px);
+    
+        @include breakpoint(xs) {
+            margin: 0 -5px;
+            width: calc(100% + 10px);
+        }
+
+        li.page {
+            display: inline-flex;
+            margin: 0;
+            padding: 0 2px;
+            border-radius: $square-button-size;
+            
+            @include breakpoint(xs) {
+                padding: 0 5px;
+            }
+
+            .page-link {
+                display: block;
+                border-radius: $square-button-size;
+
+                @include on-state(hover, focus) {
+            
+                    .page-wrap {
+                        color: $color-blue;
+                        background-color: $color-white;
+                        box-shadow: $shadows;
+            
+                        .icon:after {
+                            color: $color-blue;
+                        }
+                    }
+                }
+            }
+
+            .page-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: $square-button-size - 6px;
+                min-width: $square-button-size - 6px;
+                height: $square-button-size - 6px;
+                border-radius: $square-button-size;
+                @include transition(color, border-color, background-color, box-shadow);
+
+                @include breakpoint(xxs) {
+                    width: $square-button-size;
+                    min-width: $square-button-size;
+                    height: $square-button-size;
+                }
+            }
+
+            .page-label {
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            &.next,
+            &.prev {
+    
+                .icon {
+                    display: block;
+                    
+                    &:after {
+                        @include pseudo-icon( e006, 14, $color-navy );
+                    }
+                }
+            }
+
+            &.next {
+    
+                .icon {
+    
+                    &:after {
+                        content: '\e007';
+                    }
+                }
+            }
+
+            &.current {
+
+                .page-wrap {
+                    background-color: $color-navy;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+}

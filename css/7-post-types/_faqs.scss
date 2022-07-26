@@ -1,0 +1,79 @@
+//=======================================================================================================================================================
+// FAQs
+//=======================================================================================================================================================
+
+.orgnk-faqs {
+
+    &.type-accordion {
+
+        .faqs-list {
+            position: relative;
+            border-top: $border-weight solid $color-mid-grey;
+
+            .entry {
+                list-style: none;
+                border-bottom: $border-weight solid $color-mid-grey;
+                @include transition(border);
+
+                @include on-state(hover, focus-within) {
+                    border-bottom-color: $color-blue;
+                }
+
+                // Note: .question is a <button> element
+                .question {
+                    position: relative;
+                    width: 100%;
+                    padding: $line-break 0;
+                    font-weight: 600;
+                    text-align: left;
+                    overflow-anchor: none; // This fixes a bug in Chrome where the use of jQuery slide animations causes Chrome to scroll the page while animating
+
+                    .button-inner {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    .icon {
+                        display: block;
+                        margin: 2px 0 0 20px;
+
+                        &:after {
+                            @include pseudo-icon( e009, 10, $color-navy );
+                        }
+                    }
+
+                    @include on-state(hover, focus) {
+                        color: $color-blue;
+
+                        .icon:after {
+                            color: $color-blue;
+                        }
+                    }
+                }
+
+                .answer {
+                    display: none;
+                    width: 100%;
+                    padding: 0 0 $line-break 0;
+                    text-align: left;
+                }
+
+                // Answer expanded
+                &.open {
+
+                    .question .icon:after {
+                        transform: rotate(-180deg);
+                    }
+                }
+            }
+        }
+    }
+
+    &.type-list {
+
+        .question {
+            display: block;
+        }
+    }
+}

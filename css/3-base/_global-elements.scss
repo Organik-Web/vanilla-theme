@@ -1,0 +1,340 @@
+//=======================================================================================================================================================
+// Container
+//=======================================================================================================================================================
+
+.container {
+    position: relative;
+    display: flex;
+	flex-wrap: wrap;
+    padding: 0 ($container-pad-mobile - 5px);
+    margin: 0 auto;
+    width: 100%;
+
+    @include breakpoint(xxs) {
+        padding: 0 $container-pad-mobile;
+    }
+
+	@include breakpoint(xs) {
+        padding: 0 $container-pad-tablet;
+		max-width: $container-xs;
+	}
+
+	@include breakpoint(sm) {
+		max-width: $container-sm;
+    }
+
+	@include breakpoint(md) {
+        max-width: $container-md;
+        padding: 0 $container-pad-desktop;
+    }
+
+    @include breakpoint(lg) {
+        max-width: $container-lg;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Page wrapper - wraps all content between the header and footer, padding offsets the header
+//=======================================================================================================================================================
+
+.page-body {
+    position: relative;
+    width: 100%;
+	margin-top: $header-middle-height-mobile;
+	background-color: $color-white;
+
+	@include breakpoint($desktop-header-breakpoint) {
+		margin-top: $header-middle-height-desktop;
+    }
+
+    .has-sub-nav & {
+        margin-top: $header-middle-height-mobile + $header-bottom-height-mobile;
+
+        @include breakpoint($desktop-header-breakpoint) {
+            margin-top: $header-middle-height-desktop + $header-bottom-height-desktop;
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// General overlay asset - note: set opacity on per use basis
+//=======================================================================================================================================================
+
+.overlay {
+	content: '';
+    display: block;
+    position: absolute;
+    background-color: $color-blue-dark;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include transition();
+}
+
+
+
+//=======================================================================================================================================================
+// Images
+//=======================================================================================================================================================
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+
+
+//=======================================================================================================================================================
+// Disable scroll - dynamically addred, see functions.js for implementation
+//=======================================================================================================================================================
+
+.disable-scroll {
+	overflow: hidden;
+}
+
+
+
+//=======================================================================================================================================================
+// Disable transitions - applied to body tag on page load
+//=======================================================================================================================================================
+
+.disable-transitions * {
+    transition: none !important;
+
+    // Target pseudo elements as well
+    &:before, &:after {
+        transition: none !important;
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Align content to match container
+//=======================================================================================================================================================
+
+.contain-left {
+
+	@include breakpoint(lg) {
+		padding-left: $container-pad-desktop !important;
+	}
+
+	@include breakpoint(strip-unit($site-max-width), 0) {
+		padding-left: calc(((100% - #{$site-max-width}) / 2) + #{$container-pad-desktop}) !important;
+	}
+}
+
+.contain-right {
+
+	@include breakpoint(lg) {
+		padding-right: $container-pad-desktop !important;
+	}
+
+	@include breakpoint(strip-unit($site-max-width), 0) {
+		padding-right: calc(((100% - #{$site-max-width}) / 2) + #{$container-pad-desktop}) !important;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Inline SVG icons
+//=======================================================================================================================================================
+
+.orgnk-svg-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    @include font-size(0);
+    line-height: 1;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        path, circle, polygon {
+            fill: $color-blue;
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Organik tabs
+//=======================================================================================================================================================
+
+.orgnk-tabs {
+    opacity: 0;
+    visibility: hidden;
+    @include transition(opacity, visibility);
+
+    &.tabs-initialized {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Label swapper
+//=======================================================================================================================================================
+
+.label-swapper {
+    position: relative;
+    margin: 0 auto;
+
+    .label {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        white-space: nowrap;
+        backface-visibility: hidden;
+        transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+        @include transition(opacity, transform);
+
+        &:last-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+        }
+    }
+
+    // Align labels centre
+    &.align-centre {
+
+        .label {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+
+    // Align labels right
+    &.align-right {
+
+        .label {
+            justify-content: flex-end;
+            text-align: right;
+        }
+    }
+
+    // Slide up transition type
+    &.slide-up {
+
+        .label {
+
+            &:last-child {
+                top: 100%;
+            }
+        }
+
+        &.swap {
+
+            .label {
+                transform: translateY(-100%);
+
+                &:first-child {
+                    opacity: 0;
+                }
+
+                &:last-child {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // Slide down transition type
+    &.slide-down {
+
+        .label {
+
+            &:last-child {
+                top: -100%;
+            }
+        }
+
+        &.swap {
+
+            .label {
+                transform: translateY(100%);
+
+                &:first-child {
+                    opacity: 0;
+                }
+
+                &:last-child {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // Zoom transition
+    &.zoom {
+
+		.label {
+
+			&:last-child {
+				transform: scale(1.5);
+			}
+		}
+
+		&.swap {
+
+			.label {
+
+				&:first-child {
+					opacity: 0;
+					transform: scale(0.5);
+				}
+
+				&:last-child {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Video embeds
+//=======================================================================================================================================================
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+
+    iframe, object, embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Custom modals content source
+//=======================================================================================================================================================
+
+.modal-content-source {
+    display: none;
+}

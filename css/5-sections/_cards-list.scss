@@ -1,0 +1,185 @@
+//=======================================================================================================================================================
+// Section type - cards list
+//=======================================================================================================================================================
+
+.section-cards-list {
+
+	.section-content {
+		align-items: center;
+
+		.content-wrap {
+			text-align: center;
+		}
+
+		.actions {
+
+			.button-group {
+				justify-content: center;
+			}
+		}
+	}
+
+	.cards-list {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		width: calc(100% + #{$gutters-lg} * 2);
+		margin: (-$gutters-lg);
+
+		.card {
+			position: relative;
+			display: flex;
+			width: 100%;
+			padding: $gutters-lg;
+
+			&:first-child {
+				margin-left: auto;
+			}
+
+			&:last-child {
+				margin-right: auto;
+			}
+
+			@include breakpoint(sm) {
+                width: 50%;
+            }
+
+            @include breakpoint(lg) {
+                width: 33.33336%;
+            }
+
+			.card-link {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				width: 100%;
+				border-radius: $corners + 5px;
+				@include outset-link(5, 5);
+
+				@include on-state(hover, focus) {
+					color: $color-navy;
+
+					.title {
+						color: $color-blue;
+					}
+
+					.secondary-button {
+                        color: $color-blue;
+
+                        &:after {
+                            color: $color-blue;
+                            transform: translateX($secondary-button-transform);
+                        }
+                    }
+				}
+			}
+
+			.card-wrapper {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				width: 100%;
+				border-radius: $corners;
+				transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+				overflow: hidden;
+
+                @include breakpoint(sm,md) {
+                    flex-direction: row;
+                }
+			}
+
+			.ratio-sizer {
+				position: relative;
+				overflow: hidden;
+				display: block;
+				width: 100%;
+				padding-top: 56.25%;
+			}
+
+			.card-thumb {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				min-width: 100%;
+				min-height: 100%;
+				height: auto;
+				width: auto;
+				object-fit: cover;
+			}
+
+			.card-preview {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				width: 100%;
+				padding: $line-break 0 0 0;
+
+				@include breakpoint(sm,md) {
+					width: 60%;
+					margin: auto 0;
+                    padding: 20px 0 20px 40px;
+                }
+			}
+
+			.card-preview-content {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				width: 100%;
+				max-width: $max-width-xs;
+			}
+
+			.title {
+				display: block;
+				width: 100%;
+				margin: 0;
+				@include transition(color);
+			}
+
+			.subtitle {
+				display: block;
+				width: 100%;
+				margin: $line-break-xs 0 0 0;
+				@include transition(color);
+			}
+
+			.actions {
+                display: flex;
+                align-items: flex-end;
+                flex-grow: 1;
+                margin: $line-break-xs 0 0 0;
+
+                .primary-button,
+                .secondary-button {
+                    pointer-events: none;
+                }
+            }
+		}
+	}
+
+	&.section-dark {
+
+		.cards-list .card .card-link {
+
+			@include on-state(hover, focus) {
+
+				.title {
+					color: $color-blue;
+				}
+
+				.secondary-button {
+					color: $color-blue;
+
+					&:after {
+						color: $color-blue;
+					}
+				}
+			}
+		}
+	}
+}

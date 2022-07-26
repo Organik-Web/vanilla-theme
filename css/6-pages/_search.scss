@@ -1,0 +1,117 @@
+//=======================================================================================================================================================
+// Default site search form
+//=======================================================================================================================================================
+
+.site-search-form {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	background-color: $color-light-grey;
+	border-radius: $corners;
+
+	.search-input {
+		margin: 0;
+		padding: 0 20px;
+		border: none;
+		background: none;
+		border-radius: $corners 0 0 $corners;
+	}
+
+	.search-submit {
+		width: $input-height;
+		min-width: $input-height;
+		height: $input-height;
+		margin: 0;
+		padding: 0;
+		background: none;
+		border: none;
+		border-radius: 0 $corners $corners 0;
+
+		.icon {
+			display: block;
+
+			&:after {
+				@include pseudo-icon( e007, 16, $color-navy );
+			}
+		}
+
+		&:disabled {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		@include on-state(hover, focus) {
+			background-color: $color-blue;
+
+			.icon:after {
+				color: $color-white;
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Search results
+//=======================================================================================================================================================
+
+// .search-results-page {
+// 	background-color: $color-light-grey;
+// }
+
+.search-results-list {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+
+	.entry {
+		position: relative;
+		width: 100%;
+		margin: 0 0 $paragraph-break 0;
+		padding: 0 0 $paragraph-break 0;
+		border-bottom: $border-weight solid $color-mid-grey;
+
+		&:last-child {
+			margin: 0;
+		}
+
+		.entry-wrapper {
+			position: relative;
+			width: 100%;
+		}
+
+		.entry-preview {
+			position: relative;
+			width: 100%;
+		}
+
+		.entry-preview-content {
+			position: relative;
+			width: 100%;
+			max-width: $max-width-xl;
+		}
+
+		.title {
+			display: block;
+			width: 100%;
+			margin: 0;
+			color: $color-navy;
+		}
+
+		.excerpt {
+			display: block;
+			width: 100%;
+			margin: $line-break 0 0 0;
+			color: $color-navy;
+		}
+
+		.actions {
+			display: block;
+			width: 100%;
+			margin: $line-break 0 0 0;
+		}
+	}
+}

@@ -1,0 +1,54 @@
+//=======================================================================================================================================================
+// 404 page
+//=======================================================================================================================================================
+
+// .page-404 {
+
+// }
+
+.section-404 {
+	padding: ($section-pad-mobile * 2) 0;
+
+	@include breakpoint(xs) {
+		padding: ($section-pad-tablet * 2) 0;
+	}
+
+	@include breakpoint(md) {
+		padding: ($section-pad-desktop * 2) 0;
+	}
+
+	.section-wrap {
+		justify-content: center;
+	}
+
+	.section-content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		max-width: $max-width-lg;
+		text-align: center;
+
+		.site-search-form {
+			margin: $paragraph-break 0 0 0;
+		}
+
+		.actions {
+			margin: $paragraph-break 0 0 0;
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// No results/content
+//=======================================================================================================================================================
+
+.section-no-content {
+
+	.not-found {
+		width: 100%;
+	}
+}

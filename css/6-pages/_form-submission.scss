@@ -1,0 +1,37 @@
+//=======================================================================================================================================================
+// 404 page
+//=======================================================================================================================================================
+
+// .form-submission-page {
+
+// }
+
+.section-form-submission {
+	padding: ($section-pad-mobile * 2) 0;
+
+	@include breakpoint(xs) {
+		padding: ($section-pad-tablet * 2) 0;
+	}
+
+	@include breakpoint(md) {
+		padding: ($section-pad-desktop * 2) 0;
+	}
+
+	.section-wrap {
+		justify-content: center;
+	}
+
+	.section-content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		max-width: $max-width-lg;
+		text-align: center;
+
+		.actions {
+			margin: $paragraph-break 0 0 0;
+		}
+	}
+}

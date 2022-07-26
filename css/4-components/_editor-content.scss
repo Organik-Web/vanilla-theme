@@ -1,0 +1,338 @@
+//=======================================================================================================================================================
+// Page content / TinyMCE editor elements
+//=======================================================================================================================================================
+
+.editor-content {
+	margin: (-$paragraph-break) 0; // Push entry content outwards to offset any titles/block elements at the top or bottom of the editor
+
+	.editor-content-wrap {
+		margin: $paragraph-break 0; // Now push it back it in so any large margins on titles/block elements will overlap this element's margin and won't create any undesired spacing
+	}
+
+	// Prevent the focus ring showing when a non-focusable element is a link target
+	*:not(a):not(input):not(select):not(textarea):not(button):not(.orgnk-gallery *) {
+
+		@include on-state(focus) {
+			box-shadow: none;
+		}
+	}
+
+	// Headings
+	h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+		margin-top: $paragraph-break;
+	}
+
+	// Inline links - note we are targeting <a> tags that have no, or an empty, class property
+	a {
+
+		&:not([class]),
+		&[class=""] {
+			display: inline;
+			border-bottom: $border-weight solid $color-mid-grey;
+			padding: 3px 0;
+
+			@include on-state(hover, focus) {
+				color: $color-blue;
+				border-color: $color-blue;
+			}
+		}
+	}
+
+	// Buttons inline with each other
+	.primary-button,
+	.secondary-button {
+
+		&:not(:last-child) {
+			margin: 0 $gutters-lg 0 0;
+		}
+	}
+
+	// Lists
+	ul, ol {
+		-webkit-margin-start: 0;
+		-moz-margin-start: 0;
+		margin-inline-start: 0;
+		-webkit-padding-start: 0;
+		-moz-padding-start: 0;
+		padding-inline-start: 0;
+		-webkit-margin-before: 0;
+		margin-block-start: 0;
+		-webkit-margin-after: 0;
+		margin-block-end: 0;
+		list-style: none;
+		list-style-position: outside;
+		margin-bottom: $line-break-sm;
+
+		> li {
+			position: relative;
+			line-height: $default-line-height;
+			padding-left: $line-break;
+			margin-bottom: $line-break-sm;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		ol, ul {
+			margin-top: $line-break-sm;
+		}
+	}
+
+	ul {
+
+		> li {
+
+			&:before {
+				content: '';
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				top: 10px;
+				height: 3px;
+				width: 3px;
+				border-radius: 50%;
+				background: $color-navy;
+
+				@include breakpoint(xs) {
+					top: 11px;
+				}
+			}
+		}
+	}
+
+	ol {
+		counter-reset: list;
+
+		> li {
+			padding-left: $line-break-lg;
+
+			&:before {
+				counter-increment: list;
+				content: counter(list)".";
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		}
+
+		// Second level uses alphabetical prefixes
+		ol {
+
+			> li {
+
+				&:before {
+					content: counter(list, lower-alpha)'.';
+				}
+			}
+
+			// Third level uses roman numeral prefixes
+			ol {
+
+				> li {
+
+					&:before {
+						content: counter(list, lower-roman)'.';
+					}
+				}
+			}
+		}
+	}
+
+	// Blockquote
+	blockquote {
+		position: relative;
+		margin: $paragraph-break 0;
+		border: none;
+
+		@include breakpoint(xxs) {
+			padding: 0 0 0 40px;
+		}
+
+		@include breakpoint(xs) {
+			padding: 0 0 0 50px;
+		}
+
+		&:before {
+			content: '';
+			position: relative;
+			display: block;
+			width: 20px;
+			height: 20px;
+			margin: 0 0 $line-break 0;
+			background-image: url('../images/quotation.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+
+			@include breakpoint(xxs) {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+
+			@include breakpoint(xs) {
+				width: 24px;
+				height: 24px;
+			}
+		}
+
+		p {
+
+			// Bold the last paragraph tag if its not the first of its type
+			&:last-of-type:not(:first-of-type) {
+				font-weight: 700;
+			}
+		}
+	}
+
+	// Horizontal rule
+	hr {
+		border: solid $color-mid-grey;
+		border-width: $border-weight 0 0 0;
+		margin: $paragraph-break 0;
+		height: 0;
+	}
+
+	// Images
+	img {
+		display: block;
+		width: auto;
+		max-width: 100%;
+		margin: $paragraph-break 0;
+		border-radius: $corners;
+
+		&.alignnone {
+			width: 100%;
+		}
+
+		&.aligncenter {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.alignleft {
+			margin-right: auto;
+		}
+
+		&.alignright {
+			margin-left: auto;
+		}
+
+		&.size-full {
+			width: 100%;
+		}
+	}
+
+	// Image captions
+	figure.wp-caption {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		width: 100%;
+		max-width: 100%;
+		margin: $paragraph-break 0;
+
+		img {
+			margin: 0;
+		}
+
+		figcaption {
+			display: flex;
+			width: 100%;
+			margin: $line-break-sm 0 0 0;
+			padding: 0;
+			@include font-size($heading-small-mobile);
+			font-weight: 500;
+			color: $color-blue;
+
+			@include breakpoint(xs) {
+				@include font-size($heading-small-desktop);
+			}
+		}
+
+		&.alignnone {
+
+			img {
+				width: 100%;
+			}
+		}
+
+		&.aligncenter {
+			justify-content: center;
+
+			figcaption {
+				justify-content: center;
+			}
+		}
+
+		&.alignleft {
+			justify-content: flex-start;
+
+			figcaption {
+				justify-content: flex-start;
+			}
+		}
+
+		&.alignright {
+			justify-content: flex-end;
+
+			figcaption {
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	// Tables
+	table {
+		width: 100% !important;
+		margin: $paragraph-break 0;
+		border: none;
+		border-spacing: 0;
+		border-collapse: collapse;
+
+		tr {
+			border-top: $border-weight solid $color-mid-grey;
+
+			&:first-of-type {
+				border: none;
+			}
+		}
+
+		td {
+			width: auto !important;
+			padding: 10px 10px 10px 0;
+		}
+	}
+
+	// Video embeds
+	.video-container {
+		margin: $paragraph-break 0;
+	}
+
+	// Gallery sliders
+	.orgnk-gallery {
+		margin: $paragraph-break 0;
+	}
+
+	// FAQs
+	.orgnk-faqs {
+		margin: $paragraph-break 0;
+	}
+
+	// How To's
+	.orgnk-how-tos {
+		margin: $paragraph-break 0;
+	}
+
+	// Testimonials
+	.orgnk-testimonials {
+		margin: $paragraph-break 0;
+	}
+
+	// Gravity form embeds
+	.gform_wrapper {
+		margin: $paragraph-break 0;
+	}
+}

@@ -1,0 +1,92 @@
+//=======================================================================================================================================================
+// Section type - highlights list
+//=======================================================================================================================================================
+
+// .section-highlights-list {
+
+// }
+
+// This is not contained into inside the .section-highlights-list class because it is shared with the split content section type
+.highlights-list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+	width: calc(100% + #{$gutters-lg} * 2);
+	margin: (-$gutters-lg);
+
+	.highlight {
+		position: relative;
+		display: flex;
+		width: 100%;
+		padding: $gutters-lg;
+
+		@include breakpoint(sm) {
+			width: 50%;
+		}
+
+        @include breakpoint(md) {
+            width: 33.33336%;
+        }
+
+        .highlight-wrapper {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            flex-grow: 1;
+            width: 100%;
+            transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+            
+            @include breakpoint(xs) {
+                flex-direction: column;
+            }
+        }
+
+        .highlight-thumb {
+            position: relative;
+            display: block;
+            width: 22px;
+            min-width: 22px;
+            margin: 3px $line-break-sm 0 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+			@include breakpoint(xs) {
+				margin: 0 0 $line-break 0;
+			}
+
+            @include breakpoint(md) {
+                width: 30px;
+				min-width: 30px;
+            }
+            
+            .ratio-sizer {
+                display: block;
+                padding-top: 100%;
+            }
+        }
+
+        .highlight-preview {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .highlight-preview-content {
+            display: flex;
+            flex-direction: column;
+            max-width: $max-width-xs;
+        }
+
+        .title {
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
+
+        .subtitle {
+            display: block;
+            width: 100%;
+            margin: $line-break-xs 0 0 0;
+        }
+    }
+}

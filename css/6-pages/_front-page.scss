@@ -1,0 +1,174 @@
+//=======================================================================================================================================================
+// Front page hero section
+//=======================================================================================================================================================
+
+.section-front-hero {
+	padding: 100px 0;
+	background-color: $color-navy;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+
+	@include breakpoint(xs) {
+		padding: 150px 0;
+	}
+
+	@include breakpoint(md) {
+		padding: 200px 0;
+	}
+
+	.overlay {
+		opacity: 0.6;
+	}
+
+	.hero-content {
+		width: 100%;
+		max-width: 600px;
+	}
+
+	.title {
+		display: block;
+		width: 100%;
+		margin: 0;
+		color: $color-white;
+	}
+
+	.subtitle {
+		display: block;
+		width: 100%;
+		margin: $line-break-xs 0 0 0;
+		color: $color-white;
+	}
+
+	.actions {
+		display: block;
+		width: 100%;
+		margin: $line-break-lg 0 0 0;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Front page quick links section
+//=======================================================================================================================================================
+
+.section-front-quick-links {
+    background-color: $color-light-grey;
+
+    .quick-links-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% + #{$gutters} * 2);
+        margin: (-$gutters);
+
+        .quick-link {
+            position: relative;
+            display: flex;
+            width: 100%;
+            padding: $gutters;
+
+            @include breakpoint(sm) {
+                width: 50%;
+            }
+
+            @include breakpoint(md) {
+                width: 25%;
+            }
+
+            .link {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                width: 100%;
+                background-color: $color-white;
+                border-radius: $corners;
+
+                @include on-state(hover, focus) {
+                    color: $color-blue;
+
+                    .link-title, .link-subtitle {
+                        color: $color-blue;
+                    }
+                }
+            }
+
+            .link-wrapper {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex-grow: 1;
+                width: 100%;
+                padding: ($container-pad-mobile * 2) $container-pad-mobile;
+                border-radius: $corners;
+                box-shadow: $shadows;
+                overflow: hidden;
+
+                @include breakpoint(xs) {
+                    padding: 40px;
+                }
+            }
+
+            .link-icon {
+                display: block;
+                width: $square-button-size;
+                min-width: $square-button-size;
+                height: $square-button-size;
+                background-color: $color-mid-grey;
+                border-radius: $square-button-size;
+            }
+
+            .link-preview {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                text-align: center;
+                width: 100%;
+                max-width: 500px;
+                margin: 30px 0 0 0;
+            }
+
+            .title {
+                display: block;
+                width: 100%;
+                margin: 0;
+                color: $color-navy;
+                @include transition(color);
+            }
+
+            .subtitle {
+                display: block;
+                width: 100%;
+                margin: $line-break-xs 0 0 0;
+                color: $color-navy;
+                @include transition(color);
+            }
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// Front page blog posts section
+//=======================================================================================================================================================
+
+.section-front-blog {
+	background-color: $color-light-grey;
+
+	.posts-list {
+
+		.entry {
+
+            &:nth-child(3) {
+
+                @include breakpoint(sm,lg) {
+                    display: none;
+                }
+            }
+		}
+	}
+}

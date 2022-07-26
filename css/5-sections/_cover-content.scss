@@ -1,0 +1,55 @@
+//=======================================================================================================================================================
+// Section type - cover content
+//=======================================================================================================================================================
+
+.section-cover-content {
+	padding: $section-pad-desktop 0;
+	background-color: $color-navy;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	.overlay {
+		opacity: 0.7;
+	}
+
+	.section-content {
+
+		@include breakpoint(md) {
+			width: 50%;
+		}
+	}
+
+	&.content-center {
+
+		.section-wrap {
+			justify-content: center;
+		}
+		
+		.section-content {
+			align-items: center;
+			width: 100%;
+
+			.content-wrap {
+				text-align: center;
+			}
+
+			.actions {
+
+				.button-group {
+					justify-content: center;
+				}
+			}
+		}
+	}
+
+	&.content-right {
+
+		@include breakpoint(md) {
+
+			.section-content {
+				margin-left: auto;
+			}
+		}
+	}
+}

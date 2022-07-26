@@ -1,0 +1,217 @@
+//=======================================================================================================================================================
+// Section type - simple cards list
+//=======================================================================================================================================================
+
+.section-simple-cards-list {
+
+	.section-content {
+		align-items: center;
+
+		.content-wrap {
+			text-align: center;
+		}
+
+		.actions {
+
+			.button-group {
+				justify-content: center;
+			}
+		}
+	}
+
+	.cards-list {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		width: calc(100% + #{$gutters} * 2);
+		margin: (-$gutters);
+
+		.card {
+			position: relative;
+			display: flex;
+			width: 100%;
+			padding: $gutters;
+
+			&:first-child {
+				margin-left: auto;
+			}
+
+			&:last-child {
+				margin-right: auto;
+			}
+
+            @include breakpoint(sm) {
+                width: 50%;
+            }
+
+            @include breakpoint(lg) {
+                width: 33.33336%;
+            }
+
+			.card-link {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				width: 100%;
+				border-radius: $corners + 5px;
+				@include outset-link(5, 5);
+
+				@include on-state(hover, focus) {
+					color: $color-navy;
+
+					.card-wrapper {
+						box-shadow: $shadows-lg;
+					}
+
+					.title {
+						color: $color-blue;
+					}
+
+					.secondary-button {
+                        color: $color-blue;
+
+                        &:after {
+                            color: $color-blue;
+                            transform: translateX($secondary-button-transform);
+                        }
+                    }
+				}
+			}
+
+			.card-wrapper {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				flex-grow: 1;
+				width: 100%;
+				border-radius: $corners;
+				background-color: $color-white;
+				box-shadow: $shadows;
+				transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+				overflow: hidden;
+				padding: 40px $container-pad-mobile;
+				@include transition(box-shadow);
+
+				@include breakpoint(xs) {
+					padding: 40px;
+				}
+			}
+
+			.ratio-sizer {
+				display: block;
+				height: 30px;
+
+				@include breakpoint(md) {
+					min-height: 400px;
+				}
+			}
+
+			.card-thumb {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				min-width: 100%;
+				min-height: 100%;
+				height: auto;
+				width: auto;
+				object-fit: cover;
+			}
+
+			.card-icon-thumb {
+				position: relative;
+				display: block;
+				width: 100%;
+				margin: 0 0 $line-break 0;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+
+				.ratio-sizer {
+					display: block;
+					height: 30px;
+				}
+
+				.svg-icon {
+					width: 30px;
+					height: 30px;
+					margin: 0 auto;
+				}
+
+				&.type-logo {
+
+					.ratio-sizer {
+						height: 60px;
+					}
+
+					.svg-icon {
+						width: 60px;
+						height: 60px;
+					}
+				}
+			}
+
+			.card-preview {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				flex-grow: 1;
+				width: 100%;
+			}
+
+			.card-preview-content {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				flex-grow: 1;
+				text-align: center;
+				width: 100%;
+				max-width: $max-width-xxs;
+			}
+
+			.title {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				margin: 0;
+				color: $color-navy;
+				@include transition(color);
+			}
+
+			.subtitle {
+				display: block;
+				width: 100%;
+				margin: $line-break-xs 0 0 0;
+				color: $color-navy;
+				@include transition(color);
+			}
+
+			.actions {
+                display: flex;
+                align-items: flex-end;
+                flex-grow: 1;
+                margin: $line-break-sm 0 0 0;
+
+                .primary-button,
+                .secondary-button {
+                    pointer-events: none;
+                }
+            }
+		}
+	}
+
+	&.section-white {
+
+		.cards-list .card {
+
+			.card-wrapper {
+				background-color: $color-light-grey;
+				box-shadow: none !important;
+			}
+		}
+	}
+}

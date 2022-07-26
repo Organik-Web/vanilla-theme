@@ -1,0 +1,124 @@
+//=======================================================================================================================================================
+// Sitemap page
+//=======================================================================================================================================================
+
+// .sitemap-page {
+    // background-color: $color-light-grey;
+// }
+
+.sitemap-list {
+
+    // Local variables
+    $sitemap-menu-indent: 20px;
+    $sitemap-link-vertical-pad: 7px;
+    $sitemap-link-horizontal-pad: 14px;
+
+    position: relative;
+    width: 100%;
+
+    .sitemap-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 0 0 $line-break-xl 0;
+        padding: 0 0 $line-break-xl 0;
+        border-bottom: $border-weight solid $color-mid-grey;
+
+        @include breakpoint(xs) {
+            margin: 0 0 $paragraph-break 0;
+            padding: 0 0 $paragraph-break 0;
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+
+        .group-parent {
+            width: 100%;
+            margin: 0;
+
+            @include breakpoint(md) {
+                width: 25%;
+            }
+
+            a {
+                display: inline-block;
+                margin: (-$sitemap-link-vertical-pad) (-$sitemap-link-horizontal-pad);
+                padding: $sitemap-link-vertical-pad $sitemap-link-horizontal-pad;
+                border-radius: $corners;
+                @include inset-focus();
+            }
+        }
+
+        .group-children {
+            width: 100%;
+            margin: $line-break 0 0 0;
+
+            @include breakpoint(md) {
+                width: 75%;
+                margin: 0;
+            }
+        }
+
+        ul.menu {
+            width: 100%;
+            margin: (-$sitemap-link-vertical-pad) 0;
+
+            @include breakpoint(xs) {
+                columns: 2;
+                column-gap: 50px;
+            }
+
+            @include breakpoint(lg) {
+                columns: 3;
+            }
+
+            li {
+                position: relative;
+                break-inside: avoid;
+
+                a {
+                    position: relative;
+                    display: inline-block;
+                    margin: 0 0 0 (-$sitemap-link-horizontal-pad);
+                    padding: $sitemap-link-vertical-pad $sitemap-link-horizontal-pad;
+                    border-radius: $corners;
+                    @include inset-focus();
+                }
+
+                &.depth-level-1 {
+
+                    > ul.sub-menu {
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+
+        ul.sub-menu {
+            padding: 0 0 0 $sitemap-menu-indent;
+
+            li {
+
+                a {
+
+                    &:before {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 18px;
+                        right: calc(100% - (#{$sitemap-link-horizontal-pad} / 3));
+                        width: 999px;
+                        height: $border-weight;
+                        background-color: $color-mid-grey;
+
+                        @include breakpoint(sm) {
+                            top: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

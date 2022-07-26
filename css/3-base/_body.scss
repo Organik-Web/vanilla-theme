@@ -1,0 +1,32 @@
+//=======================================================================================================================================================
+// HTML, body & pseudo
+//=======================================================================================================================================================
+
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 6.25%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	font-variant-ligatures: normal;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: $font-1;
+	@include font-size($default-font-size-mobile);
+	font-weight: 300;
+	line-height: $default-line-height;
+	color: $color-navy;
+	background-color: $color-white;
+	min-width: $site-min-width;
+
+	@include breakpoint(xs) {
+		@include font-size($default-font-size-desktop);
+	}
+}

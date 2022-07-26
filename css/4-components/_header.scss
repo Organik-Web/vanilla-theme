@@ -1,0 +1,1043 @@
+//=======================================================================================================================================================
+// Header
+//=======================================================================================================================================================
+
+.header {
+
+	// Local variables for header
+	$desktop-menu-link-padding: 15px;
+	$mobile-menu-link-padding: 10px;
+	$overlay-panel-vertical-offset: 60px;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	@include transition(box-shadow, background-color, transform);
+
+
+
+	//=======================================================================================================================================================
+	// Header general layout and parts
+	//=======================================================================================================================================================
+
+	.header-middle {
+		position: relative;
+		display: flex;
+		flex-flow: nowrap;
+		height: $header-middle-height-mobile;
+		background-color: $color-white;
+		z-index: 20;
+
+		@include breakpoint($desktop-header-breakpoint) {
+			height: $header-middle-height-desktop;
+		}
+
+		.header-middle-wrap {
+			position: relative;
+			display: flex;
+			flex-flow: nowrap;
+			width: 100%;
+		}
+
+		.header-middle-left {
+			display: flex;
+		}
+
+		.header-middle-right {
+			display: flex;
+			justify-content: flex-end;
+			flex-grow: 1;
+			margin: 0 0 0 30px;
+		}
+	}
+
+	.header-bottom {
+		position: relative;
+		display: flex;
+		height: $header-bottom-height-mobile;
+		background-color: $color-light-grey;
+
+		@include breakpoint($desktop-header-breakpoint) {
+			height: $header-bottom-height-desktop;
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Overlay panel
+	//=======================================================================================================================================================
+
+	.overlay-panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-grow: 1;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		min-width: $site-min-width;
+		opacity: 0;
+		visibility: hidden;
+		overflow: hidden;
+		z-index: 10;
+		@include transition(opacity 0.5s, visibility 0.5s, background 0.5s);
+
+		.container {
+			flex-grow: 1;
+		}
+
+		.panel-wrap {
+			position: relative;
+			display: flex;
+			flex-grow: 1;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.panel-scroll {
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin-right: -20px; // Push any scroll bars away with negative margins
+			padding-right: 20px; // Add padding to offset the negative margins
+			-webkit-overflow-scrolling: touch;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+			overflow-y: scroll;
+
+			&::-webkit-scrollbar {
+				display: none;
+				width: 0px;
+				background: transparent;
+			}
+		}
+	}
+
+	.mobile-menu-panel,
+	.enquiry-panel {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $color-navy;
+		opacity: 0;
+		visibility: hidden;
+		@include transition(opacity 0.5s, visibility 0.5s); // This transition value is used in JS to determine the delay required when animating the panel out
+	}
+
+	.mobile-menu-panel {
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: -1px;
+			left: 0px;
+			right: 0px;
+			height: $overlay-panel-vertical-offset;
+			background: linear-gradient(180deg, rgba($color-navy, 1) 0%, rgba($color-navy, 0) 100%);
+			z-index: 1;
+			pointer-events: none;
+		}
+	}
+
+	.enquiry-panel {
+		background-color: $color-white;
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Enquiry form
+	//=======================================================================================================================================================
+
+	.enquiry-form {
+
+		.enquiry-form-wrap {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			flex-grow: 1;
+			width: 100%;
+		}
+
+		.enquiry-form-header {
+			position: relative;
+			width: 100%;
+			margin: 0 0 $line-break-xl 0;
+
+			.title {
+				display: block;
+				width: 100%;
+				margin: 0;
+			}
+
+			.subtitle {
+				display: block;
+				width: 100%;
+				margin: $line-break 0 0 0;
+			}
+		}
+
+		.gform_wrapper {
+
+			input[type="submit"] {
+				width: 100%;
+				margin: 10px 0 0 0;
+			}
+		}
+	}
+
+	//=======================================================================================================================================================
+	// Logo
+	//=======================================================================================================================================================
+
+	.header-logo {
+		display: flex;
+		align-items: center;
+		@include outset-link(0, strip-unit($desktop-menu-link-padding));
+		@include inset-focus;
+
+		.logo {
+			display: block;
+			width: auto;
+			height: 25px;
+			@include transition(opacity);
+
+			@include breakpoint(xs) {
+				height: 30px;
+			}
+		}
+
+		@include on-state(hover, focus) {
+
+			.logo {
+				opacity: 0.6;
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Site tools - search trigger, mobile menu trigger etc
+	//=======================================================================================================================================================
+
+	// Group wrapper
+	.site-tools {
+		display: flex;
+		align-items: center;
+		margin: 0 (-$desktop-menu-link-padding) 0 0;
+
+		@include breakpoint(xs) {
+			margin: 0;
+		}
+	}
+
+	// Search panel trigger
+	.search-panel-trigger {
+		position: relative;
+		width: $square-button-size;
+		min-width: $square-button-size;
+		height: $square-button-size;
+		padding: 0;
+		margin: 0;
+		border-radius: $square-button-size;
+		overflow: hidden;
+
+		.button-inner {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+		}
+
+		.icon {
+			display: block;
+			width: 18px;
+			height: 18px;
+
+			&:after {
+				@include pseudo-icon( e015, 16, $color-navy );
+			}
+		}
+
+		@include on-state(hover, focus) {
+
+			.icon:after {
+				color: $color-blue;
+			}
+		}
+	}
+
+	// Mobile menu panel trigger
+	.mobile-menu-panel-trigger {
+		position: relative;
+		width: $square-button-size;
+		min-width: $square-button-size;
+		height: $square-button-size;
+		padding: 0;
+		margin: 0;
+		border-radius: $square-button-size;
+		overflow: hidden;
+
+		@include breakpoint(sm) {
+			margin-left: 5px;
+		}
+
+		@include breakpoint($desktop-header-breakpoint) {
+			display: none;
+		}
+
+		.button-inner {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+		}
+
+		.hamburger {
+			position: relative;
+			width: 20px;
+			height: 16px;
+			@include transition();
+
+			.bar {
+				display: block;
+				position: absolute;
+				top: 7px;
+				left: 0;
+				right: 0px;
+				height: 2px;
+				background-color: $color-navy;
+				border-radius: 10px;
+				@include transition();
+
+				&.top-bun {
+					transform: translate(0, -6px);
+				}
+
+				&.patty {
+					transform: translate(0, 0);
+				}
+
+				&.bottom-bun {
+					transform: translate(0, 6px);
+				}
+			}
+		}
+
+		&.open {
+
+			.hamburger {
+
+				.bar {
+
+					&.top-bun {
+						transform: rotate(45deg) translate(0, 0);
+					}
+
+					&.patty {
+						opacity: 0;
+						transform: translate(-6px, 0);
+					}
+
+					&.bottom-bun {
+						transform: rotate(-45deg) translate(0, 0);
+					}
+				}
+			}
+		}
+
+		@include on-state(hover, focus) {
+
+			.hamburger .bar {
+				background-color: $color-blue;
+			}
+		}
+	}
+
+	// Enquiry panel trigger
+	.enquiry-panel-trigger {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		margin: 0 0 0 10px;
+		padding: 12px;
+		color: $color-white;
+		text-decoration: none;
+		background-color: $color-navy;
+		border-radius: 100px;
+		overflow: hidden;
+		@include transition(background, color, box-shadow);
+
+		@include breakpoint(xs) {
+			margin: 0 0 0 $desktop-menu-link-padding;
+			padding: 15px 24px;
+			border-radius: $corners;
+		}
+
+		// This button uses the label swapper - see global-elements.scss
+		.label {
+
+			.icon {
+				display: block;
+
+				@include breakpoint(xs) {
+					display: none;
+				}
+
+				&.contact {
+
+					&:before {
+						@include pseudo-icon( e037, 18, $color-white );
+					}
+				}
+
+				&.close {
+					padding: 2px;
+
+					&:before {
+						@include pseudo-icon( e016, 14, $color-white );
+					}
+				}
+			}
+
+			.text {
+				display: none;
+
+				@include breakpoint(xs) {
+					display: block;
+				}
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Shared current marker between different menu types
+	//=======================================================================================================================================================
+
+	.desktop-menu,
+	.header-sub-nav {
+
+		a .current-marker {
+			display: none;
+			position: absolute;
+			left: $desktop-menu-link-padding;
+			right: $desktop-menu-link-padding;
+			bottom: 0;
+			height: $border-weight-lg;
+			background-color: $color-blue;
+			@include transition(background, transform);
+
+			body.is-overlay & {
+				transform: translateY($border-weight-lg);
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Desktop menu
+	//=======================================================================================================================================================
+
+	.desktop-menu {
+		display: none;
+
+		@include breakpoint($desktop-header-breakpoint) {
+			display: flex;
+		}
+
+		// Top level menu items
+		ul.menu {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			> li {
+				position: relative;
+				display: inline-flex;
+				padding: 0;
+
+				> a {
+					position: relative;
+					display: flex;
+					align-items: center;
+					padding: 0 $desktop-menu-link-padding;
+					font-weight: 600;
+					text-decoration: none;
+					overflow: hidden;
+					@include inset-focus;
+
+					@include on-state(hover, focus) {
+						color: $color-blue;
+					}
+				}
+
+				&.current-menu-item,
+				&.current-menu-parent,
+				&.current-page-ancestor {
+
+					> a {
+
+						.current-marker {
+							display: block;
+						}
+					}
+				}
+
+				&.sub-menu-open {
+
+					> a {
+
+						.current-marker {
+							transform: translateY($border-weight-lg);
+						}
+					}
+
+					ul.sub-menu {
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+
+		// Second level menu item
+		ul.sub-menu {
+			position: absolute;
+			top: 100%;
+			left: (-$desktop-menu-link-padding);
+			min-width: 260px;
+			background-color: $color-white;
+			box-shadow: $shadows;
+			padding: $desktop-menu-link-padding 0;
+			border-radius: 0 0 $corners $corners;
+			visibility: hidden;
+			opacity: 0;
+			z-index: 10;
+			@include transition(opacity, visibility);
+
+			> li {
+
+				> a {
+					position: relative;
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					text-align: left;
+					padding: 10px ($desktop-menu-link-padding * 2);
+					font-weight: 500;
+					text-decoration: none;
+					@include inset-focus;
+
+					@include on-state(hover, focus) {
+						background-color: $color-light-grey;
+					}
+
+					.current-marker {
+						display: none;
+					}
+				}
+
+				&.current-menu-item {
+
+					a {
+						color: $color-blue;
+					}
+				}
+			}
+
+			// Align right if the sub menu is too close the right side of the window
+			&.align-right {
+				right: 0;
+				left: auto;
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Header bottom & sub navigation
+	//=======================================================================================================================================================
+
+	.header-sub-nav {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+
+		ul.menu {
+			display: flex;
+			width: 100%;
+
+			li {
+
+				a {
+					position: relative;
+					display: inline-flex;
+					align-items: center;
+					margin: 0;
+					padding: 0 $desktop-menu-link-padding;
+					@include inset-focus;
+				}
+			}
+		}
+
+		.section-parent {
+			display: inline-flex;
+			width: calc(100% + 30px);
+			margin: 0 (-$desktop-menu-link-padding);
+
+			.parent-link {
+				flex-grow: 1;
+				font-weight: 600;
+
+				@include breakpoint($desktop-header-breakpoint) {
+					flex-grow: 0;
+				}
+			}
+
+			&.current-menu-item {
+
+				> a .current-marker {
+
+					@include breakpoint($desktop-header-breakpoint) {
+						display: block;
+					}
+				}
+			}
+		}
+
+		// Dropdown arrow
+		.toggle-sub-menu {
+			display: none;
+			margin: auto 0 auto 30px;
+			@include inset-focus;
+		}
+
+		ul.sub-menu {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			position: relative;
+			padding: 0 0 0 30px;
+			margin: 0 0 0 auto;
+
+			li {
+				display: inline-flex;
+
+				&.current-menu-item,
+				&.current-page-ancestor {
+
+					> a .current-marker {
+
+						@include breakpoint($desktop-header-breakpoint) {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+
+		&.mobile-dropdown {
+
+			@include breakpoint(0, sm) {
+
+				ul.sub-menu {
+					display: flex;
+					display: none;
+					flex-wrap: wrap;
+					flex-grow: 1;
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: $header-bottom-height-mobile;
+					padding: 0 $container-pad-mobile 10px $container-pad-mobile;
+					background-color: $color-light-grey;
+
+					li {
+						display: block;
+						width: 100%;
+
+						a {
+							margin: 0 (-$desktop-menu-link-padding);
+							padding: 5px $desktop-menu-link-padding;
+
+							.current-marker {
+								display: none;
+							}
+						}
+					}
+				}
+
+				.toggle-sub-menu {
+					display: block;
+				}
+			}
+		}
+
+		&.mobile-swipe {
+
+			@include breakpoint(0, sm) {
+				width: calc(100% + #{$container-pad-mobile} * 2);
+				margin: 0 (-$container-pad-mobile);
+    			overflow: hidden;
+
+				&:before, &:after {
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					width: $container-pad-mobile;
+					z-index: 1;
+					pointer-events: none;
+				}
+
+				&:before {
+					left: 0;
+					background: linear-gradient(90deg, rgba($color-light-grey, 1) 0%, rgba($color-light-grey, 0) 100%);
+				}
+
+				&:after {
+					right: 0;
+					background: linear-gradient(90deg, rgba($color-light-grey, 0) 0%, rgba($color-light-grey, 1) 100%);
+				}
+
+				.section-parent {
+					width: auto;
+					flex-shrink: 0;
+					margin: 0 auto;  // Set this to 0 auto to center the menu
+					padding: 0 ($container-pad-mobile - $mobile-menu-link-padding);
+				}
+
+				ul.menu {
+					min-width: 100%;
+					margin: 0;
+					padding: 0;
+					margin-bottom: -20px !important; // Push any scroll bars away with negative margins
+					padding-bottom: 20px !important; // Add padding to offset the negative margins
+					flex-wrap: nowrap;
+					white-space: nowrap;
+					-webkit-overflow-scrolling: touch;
+					-ms-overflow-style: none;
+					scrollbar-width: none;
+					overflow-x: scroll;
+					overflow-y: hidden;
+
+					&::-webkit-scrollbar {
+						display: none;
+						width: 0px;
+						background: transparent;
+					}
+
+					li {
+
+						a {
+							padding: 0 $mobile-menu-link-padding;
+						}
+					}
+				}
+
+				ul.sub-menu {
+					flex-wrap: nowrap;
+					white-space: nowrap;
+					margin: 0 0 0 $mobile-menu-link-padding;
+					padding: 0 0 0 $mobile-menu-link-padding;
+
+					// Divider
+					&:before {
+						content: '';
+						display: block;
+						position: absolute;
+						left: 0;
+						top: 50%;
+						height: 18px;
+						width: $border-weight;
+						background-color: $color-mid-grey;
+						transform: translateY(-50%);
+					}
+				}
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Mobile menu
+	//=======================================================================================================================================================
+
+	.mobile-menu {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-grow: 1;
+		width: 100%;
+		margin: auto 0;
+		padding: $overlay-panel-vertical-offset 0;
+
+		@include breakpoint($desktop-header-breakpoint) {
+			display: none;
+		}
+
+		// Top level menu items
+		ul.menu {
+			display: block;
+
+			> li {
+				position: relative;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				transform: translateY(10px);
+				opacity: 0;
+				@include transition();
+
+				&.in-view {
+					transform: translateY(0);
+					opacity: 1;
+				}
+
+				> a {
+					position: relative;
+					display: inline-flex;
+					margin: 0 -15px;
+					padding: 10px 15px;
+					max-width: calc(100% - #{$square-button-size - 15px}); // This px value must be equal to the .toggle-sub-menu width minus the negative margins
+					@include font-size(20);
+					font-weight: 500;
+					color: $color-white;
+					border-radius: $corners;
+					@include inset-focus;
+
+					@include on-state(hover, focus) {
+						color: $color-blue;
+					}
+				}
+
+				// Dropdown arrow
+				.toggle-sub-menu {
+					margin: 2px 0 0 5px;
+					@include inset-focus;
+
+					.icon:after {
+						color: $color-white;
+					}
+
+					@include on-state(hover, focus) {
+
+						.icon:after {
+							color: $color-blue;
+						}
+					}
+				}
+
+				// For pages that do not have children/dropdown arrow, add an empty spacer in place of the dropdown button to force all <a> elements to have the same right position
+				&:not(.menu-item-has-children):not(.page_item_has_children) {
+
+					// This element must be equal to the visual width (remember negative margins are in play) of the dropdown menu trigger
+					&:after {
+						content: '';
+						display: block;
+						width: 72px;
+						height: 1px;
+						pointer-events: none;
+					}
+				}
+			}
+		}
+
+		// Second level menu items
+		ul.sub-menu {
+			display: none;
+			width: 100%;
+			padding: 0 0 20px 0;
+
+			> li {
+
+				a {
+					position: relative;
+					display: inline-flex;
+					margin: 0 -15px;
+					padding: 5px 15px;
+					color: $color-white;
+					border-radius: $corners;
+					@include inset-focus;
+
+					@include on-state(hover, focus) {
+						color: $color-blue;
+					}
+				}
+			}
+		}
+	}
+
+
+
+	//=======================================================================================================================================================
+	// Search panel
+	//=======================================================================================================================================================
+
+	.search-panel {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: $color-white;
+		visibility: hidden;
+		@include transition(opacity, visibility, transform);
+		transform: translateY(-100%);
+		z-index: 10;
+
+		.panel-wrap {
+			display: flex;
+			align-items: center;
+			margin: 0 -10px 0 -20px;
+			width: calc(100% + 30px);
+			height: $header-middle-height-mobile;
+
+			@include breakpoint($desktop-header-breakpoint) {
+				height: $header-middle-height-desktop;
+			}
+		}
+
+		.site-search-form {
+			border-radius: 0;
+			background-color: $color-white;
+
+			.search-input {
+				border-radius: $corners;
+			}
+		}
+
+		.search-submit {
+			width: $square-button-size;
+			min-width: $square-button-size;
+			height: $square-button-size;
+			border-radius: $corners;
+		}
+
+		.search-close {
+			width: $square-button-size;
+			min-width: $square-button-size;
+			height: $square-button-size;
+			margin: 0;
+			padding: 0;
+			background: none;
+			border: none;
+			border-radius: $corners;
+			z-index: 1;
+
+			.icon {
+				display: block;
+
+				&:after {
+					@include pseudo-icon( e016, 14, $color-navy );
+				}
+			}
+
+			@include on-state(hover, focus) {
+				background-color: $color-blue;
+
+				.icon:after {
+					color: $color-white;
+				}
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Panel active states
+//=======================================================================================================================================================
+
+.is-overlay .header .overlay-panel {
+	opacity: 1;
+	visibility: visible;
+}
+
+.is-mobile-menu .header {
+
+	.overlay-panel {
+		background-color: $color-navy;
+	}
+
+	.mobile-menu-panel {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.is-enquiry .header {
+
+	.overlay-panel {
+		background-color: $color-white;
+	}
+
+	.enquiry-panel {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.enquiry-form {
+		opacity: 1;
+		visibility: visible;
+		transition-delay: 0.3s;
+	}
+}
+
+.is-search .header .search-panel {
+	visibility: visible;
+	transform: translate(0);
+}
+
+
+
+//=======================================================================================================================================================
+// Overrides for logged in users showing the admin bar on the front-end
+//=======================================================================================================================================================
+
+.admin-bar {
+
+	.header,
+	.search-panel {
+		top: 46px;
+
+		@include breakpoint(783, 0) {
+			top: 32px;
+		}
+	}
+}
+
+#wpadminbar {
+
+	@include breakpoint(0, 600) {
+		position: fixed;
+	}
+}

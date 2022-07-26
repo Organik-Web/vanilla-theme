@@ -1,0 +1,530 @@
+//=======================================================================================================================================================
+// Gravity forms base styles
+//=======================================================================================================================================================
+
+.gform_wrapper {
+
+    // Local variables
+    $gform-gutters: $gutters;
+
+    form {
+        width: 100%;
+    }
+
+    .gform_heading {
+        display: block;
+        width: 100%;
+        margin: 0 0 $input-margins 0;
+
+        .gform_title {
+            display: block;
+            width: 100%;
+            margin: 0;
+        }
+
+        .gform_description {
+            display: block;
+            width: 100%;
+            margin: $input-margins 0 0 0;
+        }
+    }
+
+    // Wrappers
+    .gform_body,
+    .gform_footer {
+        width: 100%;
+    }
+
+    // Wrapper for all fields
+    .gform_fields {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 (-$gform-gutters);
+        list-style: none;
+    }
+
+    // Each field
+    .gfield {
+        width: 100%;
+        padding: 0 $gform-gutters;
+
+        .gfield_label {
+            display: inline-block;
+            margin: 0 0 $line-break-xs 0;
+            font-weight: 600;
+        }
+
+        // Override the inline width that Gravity Forms puts on textareas when resized, and set the default height
+        textarea {
+            width: 100% !important;
+            height: 150px;
+        }
+
+        &.hidden_label {
+
+            .gfield_label {
+                display: none;
+            }
+        }
+    }
+
+    .gfield_description {
+        display: block;
+        margin: (-$line-break-xs) 0 $input-margins 0;
+        @include font-size($body-small-mobile);
+
+        @include breakpoint(xs) {
+            @include font-size($body-small-desktop);
+        }
+    }
+
+    .validation_message {
+        font-style: normal;
+    }
+
+    .gfield_checkbox,
+    .gfield_radio {
+        list-style: none;
+        margin: 0 0 $input-margins 0;
+
+        li {
+            margin: 0 0 $line-break-xs 0;
+
+            &:last-child {
+                margin: 0;
+            }
+
+            label {
+                margin: 0;
+            }
+        }
+
+        // input {
+
+        // }
+    }
+
+    .gfield_radio {
+        input[type="text"] {
+            width: auto;
+            display: inline-block;
+        }
+    }
+
+    // Fields with subfields - name field for example
+    .ginput_complex {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 (-$gform-gutters);
+
+        label {
+            display: block;
+            margin: -10px 0 $input-margins 0;
+            font-weight: normal;
+        }
+
+        .name_prefix,
+        .name_suffix {
+            width: 100%;
+            padding: 0 $gform-gutters;
+
+            @include breakpoint(xs) {
+                width: 20%;
+            }
+        }
+
+        .name_first,
+        .name_middle,
+        .name_last {
+            width: 100%;
+            flex-grow: 1;
+            padding: 0 $gform-gutters;
+
+            @include breakpoint(xs) {
+                width: 40%;
+            }
+        }
+    }
+
+    // input.datepicker_with_icon {
+    //     display: inline-block;
+    //     width: auto;
+    // }
+
+    // Date dropdowns
+    .gfield_date_month,
+    .gfield_date_dropdown_month {
+        display: inline-block;
+        width: auto;
+        margin-right: 1%;
+    }
+
+    .gfield_date_day,
+    .gfield_date_dropdown_day {
+        display: inline-block;
+        width: auto;
+        margin-right: 1%;
+    }
+
+    .gfield_date_year,
+    .gfield_date_dropdown_year {
+        display: inline-block;
+        width: auto;
+    }
+
+    .gfield_time_hour {
+
+        input {
+            width: inherit;
+            display: inline-block;
+        }
+
+        label {
+            display: block;
+        }
+    }
+
+    .gfield_time_minute {
+        width: 30%;
+    }
+
+    .gfield_time_ampm {
+        width: 20%;
+    }
+
+    // Field width classes
+    .ginput_left,
+    .ginput_right {
+
+        @include breakpoint(xs) {
+            width: 50%;
+        }
+    }
+
+    .gf_left_half,
+    .gf_right_half,
+    .gfield--width-half {
+
+        @include breakpoint(xs) {
+            width: 50%;
+        }
+    }
+
+    .gf_left_third,
+    .gf_middle_third,
+    .gf_right_third,
+    .gfield--width-third {
+
+        @include breakpoint(sm) {
+            width: 33.33336%;
+        }
+    }
+
+    .gf_first_quarter,
+    .gf_second_quarter,
+    .gf_third_quarter,
+    .gf_fourth_quarter,
+    .gfield--width-quarter {
+
+        @include breakpoint(xs) {
+            width: 50%;
+        }
+
+        @include breakpoint(md) {
+            width: 25%;
+        }
+    }
+
+    // Inline / no width fields
+    .gf_inline {
+        width: auto;
+    }
+
+    // List fields
+    .gfield_list {
+        margin: 0;
+    }
+
+    .gf_list_2col li {
+        width: 50%;
+    }
+
+    .gf_list_3col li {
+        width: 33.33336%;
+    }
+
+    .gf_list_4col li {
+        width: 25%;
+    }
+
+    .gf_list_5col li {
+        width: 20%;
+    }
+
+    .gf_list_inline li {
+        display: inline-block;
+    }
+
+    .gf_list_height_25 li {
+        height: 25px;
+    }
+
+    .gf_list_height_50 li {
+        height: 50px;
+    }
+
+    .gf_list_height_75 li {
+        height: 75px;
+    }
+
+    .gf_list_height_100 li {
+        height: 100px;
+    }
+
+    .gf_list_height_125 li {
+        height: 125px;
+    }
+
+    .gf_list_height_150 li {
+        height: 150px;
+    }
+
+    .gfield_list > tbody > tr:nth-child(odd) > td,
+    .gfield_list > tbody > tr:nth-child(odd) > th {
+        background: none;
+        line-height: normal;
+        padding: 0;
+        border: 0;
+    }
+
+    .gfield_list > thead > tr > th {
+        border: 0;
+    }
+
+    .gf_scroll_text {
+        padding: 12px;
+        border: $border-weight solid $color-light-grey;
+        height: 180px;
+        overflow: auto;
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .gf_hide_ampm {
+
+        .gfield_time_ampm {
+            display: none;
+        }
+    }
+
+    .gf_hide_charleft {
+
+        .charleft {
+            display: none;
+        }
+    }
+
+    .gf_page_steps {
+        line-height: 1;
+    }
+
+    .gf_step {
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .gf_step_active {
+        opacity: 1;
+    }
+
+    .gf_step_number {
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .validation_error {
+        display: block;
+        width: 100%;
+        margin: 0 0 $input-margins 0;
+    }
+
+    .gfield_error {
+
+        > label,
+        .validation_message {
+            color: $color-red;
+        }
+
+        input,
+        textarea,
+        select {
+            border-color: $color-red;
+
+            @include on-state(focus) {
+                border-color: darken($color-red, 10%);
+            }
+        }
+    }
+
+    // Hide the honeypot field from humans
+    .gform_validation_container {
+        display: none;
+        position: absolute;
+        left: -9000px;
+    }
+
+    // Required asterisk
+    .gfield_required {
+        color: $color-red;
+        padding-left: 3px;
+    }
+
+    // Buttons
+    .gform_button {
+        display: inline-block;
+    }
+
+    // reCAPTCHA
+    .ginput_recaptcha {
+        display: block;
+        margin: 0 0 $line-break 0;
+
+        @include breakpoint(0, xxs) {
+            transform: scale(0.75657); // This value will scale the reCAPTCHA to 230px
+            transform-origin: left;
+            margin: (-$line-break-xs) 0 $line-break-xs 0;
+        }
+    }
+}
+
+
+
+//=======================================================================================================================================================
+// UI datepicker
+//=======================================================================================================================================================
+
+.ui-datepicker {
+    display: none; // JS makes this visible on click
+    padding: 10px;
+    margin-top: 5px;
+    background: $color-white;
+    border: $border-weight solid $color-mid-grey;
+    box-shadow: $shadows;
+    border-radius: $corners;
+    z-index: 9999 !important; // Force the datepicker to be the highest element on the page at all times
+
+    .ui-datepicker-header {
+        display: flex;
+
+        .ui-datepicker-prev,
+        .ui-datepicker-next {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: $square-button-size;
+            min-width: $square-button-size;
+            height: $square-button-size;
+            border-radius: $corners;
+
+            &:before {
+                @include pseudo-icon( e011, 10, $color-navy );
+            }
+
+            span {
+                display: none;
+            }
+
+            @include on-state( hover, focus ) {
+                background-color: $color-light-grey;
+            }
+        }
+
+        .ui-datepicker-prev {
+            order: 1;
+            margin-right: 3px;
+
+            &:before {
+                content: '\e010';
+            }
+        }
+
+        .ui-datepicker-next {
+            order: 3;
+            margin-left: 3px;
+        }
+
+        .ui-datepicker-title {
+            display: flex;
+            flex-grow: 1;
+            order: 2;
+
+            select {
+                flex-grow: 1;
+                width: auto;
+                min-width: 80px;
+                height: $square-button-size;
+                display: inline-block;
+                margin: 0 3px;
+                padding-right: 25px;
+            }
+        }
+    }
+
+    table.ui-datepicker-calendar {
+        width: 100%;
+        margin: $line-break-xs 0 0 0;
+        border-collapse: collapse;
+        @include font-size($body-small-mobile);
+
+        @include breakpoint(xs) {
+            @include font-size($body-small-desktop);
+        }
+
+        th {
+            padding: 8px 3px;
+            text-align: center;
+            font-weight: bold;
+            border: 0;
+        }
+
+        td {
+            border: 0;
+            padding: 2px;
+
+            .ui-state-default {
+                display: block;
+                width: 32px;
+                line-height: 28px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 2px;
+                background-color: $color-light-grey;
+                border: $border-weight solid transparent;
+
+                @include breakpoint(xxs) {
+                    width: 38px;
+                    line-height: 32px;
+                }
+            }
+
+            a.ui-state-default {
+
+                @include on-state(hover, focus) {
+                    background-color: rgba($color-blue, 0.075);
+                }
+            }
+
+            .ui-state-active {
+                color: $color-blue;
+                background-color: $color-white;
+                border: $border-weight solid $color-blue !important;
+            }
+
+            &.ui-datepicker-other-month {
+                opacity: 0.5;
+            }
+        }
+    }
+}

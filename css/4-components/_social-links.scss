@@ -1,0 +1,131 @@
+//=======================================================================================================================================================
+// Social links
+//=======================================================================================================================================================
+
+.business-social-links {
+    display: inline-flex;
+    width: 100%;
+
+    ul.social-links {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -5px;
+        list-style: none;
+
+        li {
+            padding: 5px;
+            margin: 0;
+
+            a {
+                display: flex;
+                align-items: center;
+                @include outset-link(strip-unit($focus-ring-weight), strip-unit($focus-ring-weight));
+                border-radius: 100px;
+            
+                @include on-state(hover, focus) {
+                    
+                    .icon-wrapper {
+                        background-color: $color-blue;
+                        box-shadow: none;
+                    }
+
+                    .icon:before {
+                        color: $color-white;
+                    }
+                }
+            }
+
+            .icon-wrapper {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: $square-button-size - 4px;
+                min-width: $square-button-size - 4px;
+                height: $square-button-size - 4px;
+                color: $color-navy;
+                background-color: $color-light-grey;
+                border-radius: 100px;
+                @include transition(color, background, box-shadow);
+
+                @include breakpoint(xs) {
+                    width: $square-button-size;
+                    min-width: $square-button-size;
+                    height: $square-button-size;
+                }
+            }
+
+            .icon {
+                display: block;
+
+                &:before {
+                    content: '';
+                    display: block;
+                    font-family: $social-icons;
+                    font-weight: normal;
+                    @include font-size(18);
+                    line-height: 18px;
+                    color: $color-navy;
+                    @include transition();
+                }
+
+                &.facebook:before {
+                    content: '\ea01';
+                }
+
+                &.instagram:before {
+                    content: '\ea02';
+                }
+
+                &.twitter:before {
+                    content: '\ea03';
+                }
+
+                &.youtube:before {
+                    content: '\ea04';
+                }
+
+                &.vimeo:before {
+                    content: '\ea05';
+                }
+
+                &.linkedin {
+                    margin-top: -2px;
+                    
+                    &:before {
+                        content: '\ea06';
+                    }
+                }
+
+                &.pinterest:before {
+                    content: '\ea07';
+                }
+
+                &.tumblr:before {
+                    content: '\ea08';
+                }
+
+                &.dribbble:before {
+                    content: '\ea09';
+                }
+
+                &.behance:before {
+                    content: '\ea10';
+                }
+
+                &.whatsapp:before {
+                    content: '\ea11';
+                }
+
+                &.telegram:before {
+                    content: '\ea12';
+                }
+            }
+
+            .label {
+                display: block;
+                margin: 0 $line-break;
+            }
+        }
+    }
+}

@@ -1,0 +1,187 @@
+//=======================================================================================================================================================
+// How to's shortcode
+//=======================================================================================================================================================
+
+.orgnk-how-tos {
+    position: relative;
+
+    .how-to-entry {
+        border-top: $border-weight solid $color-mid-grey;
+        padding: $paragraph-break 0;
+
+        .how-to-header {
+            display: block;
+            width: 100%;
+            margin: 0 0 $paragraph-break 0;
+
+            .title {
+                display: block;
+                width: 100%;
+                margin: 0;
+            }
+            
+            .description {
+                display: block;
+                width: 100%;
+                margin: $line-break 0 0 0;
+            }
+        }
+
+        .how-to-meta {
+            display: inline-flex;
+            width: 100%;
+            margin: $line-break-xs 0;
+
+            .meta-list {
+                display: flex;
+                flex-wrap: wrap;
+                margin: -5px;
+                width: calc(100% + 10px);
+            }
+
+            .meta {
+                display: block;
+                padding: 4px 12px;
+                margin: 5px;
+                font-weight: 500;
+                color: $color-white;
+                background-color: $color-navy;
+                border-radius: $corners;
+            }
+        }
+
+        .how-to-requirements {
+            display: inline-block;
+            width: 100%;
+            margin: $paragraph-break 0 0 0;
+
+            .list-wrap {
+                display: flex;
+                flex-wrap: wrap;
+                width: calc(100% + #{$line-break} * 2);
+                margin: (-$line-break);
+            }
+
+            .list-group {
+                display: block;
+                width: 100%;
+                padding: $line-break;
+
+                @include breakpoint(sm) {
+                    width: 50%;
+                }
+
+                .list-title {
+                    display: block;
+                    width: 100%;
+                    margin: 0 0 $line-break 0;
+                    font-weight: 500;
+                }
+
+                ul {
+                    margin: 0;
+                }
+            }
+        }
+
+        .how-to-steps {
+
+            .step {
+                position: relative;
+                border-top: $border-weight solid $color-mid-grey;
+                padding: $paragraph-break 0;
+    
+                &:last-child {
+                    border-bottom: $border-weight solid $color-mid-grey;
+                }
+
+                .step-wrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .step-media {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    border-radius: $corners;
+                    transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+                    overflow: hidden;
+
+                    @include breakpoint(lg) {
+                        width: 180px;
+                    }
+                }
+
+                .step-image {
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    background-color: $color-mid-grey;
+                    border-radius: $corners;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+        
+                    .ratio-sizer {
+                        display: block;
+                        padding-top: 56.25%;
+        
+                        @include breakpoint(lg) {
+                            padding-top: 100%;
+                        }
+                    }
+                }
+
+                .step-content {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    flex-grow: 1;
+
+                    @include breakpoint(lg) {
+                        width: 50%;
+                    }
+                }
+
+                .step-content-wrap {
+                    margin: auto 0;
+                }
+    
+                .step-title {
+                    display: block;
+                    margin: 0;
+                }
+    
+                .step-directions {
+                    display: block;
+                    width: 100%;
+                    margin: $line-break 0 0 0;
+                }
+
+                .step-tip {
+                    display: inline-flex;
+                    margin: $line-break 0 0 0;
+                    padding: 4px 12px;
+                    font-weight: 500;
+                    background-color: $color-light-grey;
+                    border-radius: $corners;
+                }
+            }
+
+            &.has-images {
+
+                .step {
+
+                    .step-content {
+                        padding: $paragraph-break 0 0 0;
+
+                        @include breakpoint(lg) {
+                            padding: 0 0 0 $paragraph-break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

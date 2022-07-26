@@ -1,0 +1,55 @@
+//=======================================================================================================================================================
+// Section type - split content
+//=======================================================================================================================================================
+
+.section-split-content {
+
+	.section-media,
+	.section-content {
+		width: 100%;
+
+		@include breakpoint(md) {
+			width: 50%;
+		}
+	}
+
+	.section-content {
+		margin: $paragraph-break 0 0 0;
+
+		@include breakpoint(md) {
+			margin: 0;
+		}
+
+		.content-wrap {
+
+			@include breakpoint(md) {
+				padding: $column-pad-tablet 0;
+			}
+
+			@include breakpoint(lg) {
+				padding-right: $column-pad-desktop;
+			}
+		}
+	}
+
+	&.content-left {
+
+		.section-wrap {
+
+			@include breakpoint(md) {
+				flex-direction: row-reverse;
+			}
+		}
+	}
+
+	.highlights-list {
+
+		.highlight {
+			width: 100%;
+
+			@include breakpoint(xs) {
+				width: 50%;
+			}
+		}
+	}
+}

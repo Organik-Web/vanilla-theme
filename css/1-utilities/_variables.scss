@@ -1,0 +1,177 @@
+//=======================================================================================================================================================
+// Fonts
+//=======================================================================================================================================================
+
+// Font families
+$font-1:                            'Inter', Helvetica, Arial, sans-serif;
+$font-2:                            'Helvetica', Arial, sans-serif;
+$system-font:                       -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+$social-icons:                      'social-icons';
+$ui-icons:                          'ui-icons';
+
+// Font properties
+$default-font-size-mobile:          13;
+$default-font-size-desktop:         14;
+$default-line-height:               1.8;
+
+// Font sizes
+$h1-mobile:                         24;
+$h1-desktop:                        34;
+
+$h1-big-mobile:                     30;
+$h1-big-desktop:                    42;
+
+$h2-mobile:                         20;
+$h2-desktop:                        28;
+
+$h3-mobile:                         18;
+$h3-desktop:                        22;
+
+$h4-mobile:                         15;
+$h4-desktop:                        16;
+
+$h5-mobile:                         15;
+$h5-desktop:                        16;
+
+$h6-mobile:                         15;
+$h6-desktop:                        16;
+
+$heading-small-mobile:              12;
+$heading-small-desktop:             13;
+
+$body-small-mobile:                 $default-font-size-mobile - 1;
+$body-small-desktop:                $default-font-size-desktop - 1;
+
+
+
+//=======================================================================================================================================================
+// Colors
+//=======================================================================================================================================================
+
+// Basics
+$color-white:                     #ffffff;
+$color-black:                     #000000;
+$color-light-grey:                #f6f7f8;
+$color-mid-grey:                  #d9dadc;
+$color-dark-grey:                 #bfc1c4;
+$color-red:                       #e21219; // We always require a red color for input errors etc
+
+// Brand specific
+$color-navy:                      #062639;
+$color-navy-dark:                 #021017;
+$color-blue:                      #0096d1;
+$color-blue-dark:                 #000a1e;
+
+
+
+//=======================================================================================================================================================
+// Focus ring - uses the box-shadow property
+//=======================================================================================================================================================
+
+$focus-ring-weight:                 2px;
+$focus-ring-color:                #89b3f3;
+$focus-ring:                        0 0 0 $focus-ring-weight $focus-ring-color, inset 0 0 0 $focus-ring-weight $color-white;
+$focus-ring-inset:                  inset 0 0 0 $focus-ring-weight $focus-ring-color, inset 0 0 0 ($focus-ring-weight * 2) $color-white;
+
+
+
+//=======================================================================================================================================================
+// Header
+//=======================================================================================================================================================
+
+$desktop-header-breakpoint:         lg; // For quickly changing the main breakpoint between the mobile and desktop header
+
+$header-top-height-mobile:          40px;
+$header-top-height-desktop:         50px;
+
+$header-middle-height-mobile:       60px;
+$header-middle-height-desktop:      80px;
+
+$header-bottom-height-mobile:       45px;
+$header-bottom-height-desktop:      50px;
+
+
+
+//=======================================================================================================================================================
+// Layout
+//=======================================================================================================================================================
+
+$site-min-width:                    320px;
+$site-max-width:                    1600px;
+
+$container-xxs:                     100%;
+$container-xs:                      640px;
+$container-sm:                      768px;
+$container-md:                      1024px;
+$container-lg:                      $site-max-width;
+
+$container-pad-mobile:              25px;
+$container-pad-tablet:              40px;
+$container-pad-desktop:             60px;
+
+$column-pad-mobile:                 20px;
+$column-pad-tablet:                 30px;
+$column-pad-desktop:                50px;
+
+$section-pad-mobile:                60px;
+$section-pad-tablet:                80px;
+$section-pad-desktop:               140px;
+
+$gutters:                           12px;
+$gutters-sm:                        6px;
+$gutters-lg:                        24px;
+
+$line-break:                        20px;
+$line-break-xs:                     $line-break - 10px;
+$line-break-sm:                     $line-break - 5px;
+$line-break-lg:                     $line-break + 5px;
+$line-break-xl:                     $line-break + 10px;
+
+$paragraph-break:                   50px;
+$paragraph-break-lg:                $paragraph-break + 30px;
+
+$max-width-xxs:                     300px;
+$max-width-xs:                      400px;
+$max-width-sm:                      500px;
+$max-width-md:                      600px;
+$max-width-lg:                      700px;
+$max-width-xl:                      800px;
+$max-width-xxl:                     900px;
+$max-width-xxxl:                    1000px;
+
+
+
+//=======================================================================================================================================================
+// General styling
+//=======================================================================================================================================================
+
+// Border radius - set this to 0 for no rounded corners
+$corners:                           6px;
+
+// Borders
+$border-weight:                     1px;
+$border-weight-lg:                  3px;
+
+// Shadows
+$shadows:                           0 5px 15px rgba($color-navy-dark, 0.05);
+$shadows-lg:                        0px 10px 100px -20px rgba($color-navy-dark, 0.08), 0px 20px 50px -20px rgba($color-navy-dark, 0.08);
+
+// Transitions
+$default-transitions:               0.3s;
+
+// Square buttons
+$square-button-size:                44px;
+
+// Inputs
+$input-height:                      50px;
+$input-margins:                     $line-break;
+$input-padding:                     15px;
+
+// Checkboxes and radio buttons
+$checkbox-radio-size:               20px;
+
+// Modal overlay opacity
+$modal-overlay-opacity:             0.95;
+
+// Secondary button icon transform on hover/focus
+$secondary-button-transform:        5px;

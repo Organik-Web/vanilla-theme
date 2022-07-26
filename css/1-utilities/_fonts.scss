@@ -1,0 +1,27 @@
+//=======================================================================================================================================================
+// Social icons font
+//=======================================================================================================================================================
+
+@font-face {
+    font-family: 'social-icons';
+    src: url('../fonts/orgnk-social-icons/social-icons.woff2') format('woff2'),
+        url('../fonts/orgnk-social-icons/social-icons.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+
+
+//=======================================================================================================================================================
+// UI icons font
+//=======================================================================================================================================================
+
+@font-face {
+    font-family: 'ui-icons';
+    src: url('../fonts/orgnk-ui-icons/ui-icons.woff2') format('woff2'),
+        url('../fonts/orgnk-ui-icons/ui-icons.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}

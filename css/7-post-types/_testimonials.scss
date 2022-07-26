@@ -1,0 +1,51 @@
+//=======================================================================================================================================================
+// Testimonials
+//=======================================================================================================================================================
+
+.orgnk-testimonials {
+    position: relative;
+    width: 100%;
+
+    .testimonials-list {
+        width: 100%;
+    }
+
+    // Testimonial slider
+    &.type-slider {
+
+        .testimonials-list {
+            display: none;
+            padding: 0 0 $square-button-size 0;
+            opacity: 0;
+            visibility: hidden;
+            border-radius: $corners;
+            @include transition();
+            
+            // Fade slider in once ready
+            &.is-active {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .testimonial-item {
+            margin: 0 0 $line-break 0;
+        
+            // Cross reference this with the blockquote styling in _editor-content.scss which only styles blockqoutes in the content editor
+            blockquote {
+                position: relative;
+                margin: 0;
+                border: none;
+
+                p {
+
+                    // Bold the last paragraph tag if its not the first of its type
+                    &:last-of-type:not(:first-of-type) {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}

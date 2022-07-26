@@ -1,0 +1,21 @@
+/*
+Theme Name:     Organik Vanilla
+Theme URI:      https://www.orgnk-client-domain.org.au/
+Author:         Organik Web
+Author URI:     https://www.organikweb.com.au/
+Description:    Bespoke theme for Organik Client
+Version:        1.0.0
+License:        GNU General Public License v2 or later
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    orgnk_client_textdomain
+
+This is our backend editor sass file, used to style elements in the TinyMCE editor only. It will only @import other files.
+*/
+
+// Utilities
+@import '1-utilities/variables';
+@import '1-utilities/mixins';
+@import '1-utilities/fonts';
+
+// Admin
+@import '2-admin/admin-editor';

@@ -1,0 +1,335 @@
+//=======================================================================================================================================================
+// HTML5 base inputs and fields
+//=======================================================================================================================================================
+
+// General styles for inputs and fields
+input[type="reset"],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+	position: relative;
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	height: $input-height;
+	margin: 0 0 $input-margins 0;
+	padding: 0 $input-padding;
+	font-family: $font-1;
+	@include font-size($default-font-size-mobile);
+	line-height: $default-line-height;
+	font-weight: 300;
+	color: $color-navy;
+	background: none;
+	border: $border-weight solid $color-mid-grey;
+	border-radius: $corners;
+	overflow: hidden;
+	cursor: text;
+	@include transition();
+
+	@include breakpoint(xs) {
+		@include font-size($default-font-size-desktop);
+	}
+
+	@include on-state(hover, focus, active) {
+		border-color: $color-navy;
+	}
+
+	&:disabled {
+		color: rgba($color-navy, 0.5);
+	}
+
+	// Placeholder, these need to be seperate like this
+	&::-webkit-input-placeholder {
+		font-family: $font-1;
+		@include font-size($default-font-size-mobile);
+		color: rgba($color-navy, 0.5);
+
+		@include breakpoint(xs) {
+			@include font-size($default-font-size-desktop);
+		}
+	}
+
+	// Firefox 18-
+	&:-moz-placeholder {
+		font-family: $font-1;
+		@include font-size($default-font-size-mobile);
+		color: rgba($color-navy, 0.5);
+
+		@include breakpoint(xs) {
+			@include font-size($default-font-size-desktop);
+		}
+	}
+
+	// Firefox 19+
+	&::-moz-placeholder {
+		font-family: $font-1;
+		@include font-size($default-font-size-mobile);
+		color: rgba($color-navy, 0.5);
+
+		@include breakpoint(xs) {
+			@include font-size($default-font-size-desktop);
+		}
+	}
+
+	// IE
+	&:-ms-input-placeholder {
+		font-family: $font-1;
+		@include font-size($default-font-size-mobile);
+		color: rgba($color-navy, 0.5);
+
+		@include breakpoint(xs) {
+			@include font-size($default-font-size-desktop);
+		}
+	}
+
+	// Remove the dotted outline FireFox puts on inputs when focused
+	&::-moz-focus-inner {
+		border: 0;
+	}
+
+	.inputs-light & {
+		color: $color-white;
+
+		@include on-state(hover, focus, active) {
+			background-color: rgba($color-white, 0.5);
+		}
+
+		&:disabled {
+			color: rgba($color-white, 0.5);
+		}
+
+		// Placeholder, these need to be seperate like this
+		&::-webkit-input-placeholder {
+			color: rgba($color-white, 0.5);
+		}
+
+		// Firefox 18-
+		&:-moz-placeholder {
+			color: rgba($color-white, 0.5);
+		}
+
+		// Firefox 19+
+		&::-moz-placeholder {
+			color: rgba($color-white, 0.5);
+		}
+
+		// IE
+		&:-ms-input-placeholder {
+			color: rgba($color-white, 0.5);
+		}
+	}
+}
+
+// Select elements
+select {
+	vertical-align: middle;
+	cursor: pointer;
+
+	&:not([multiple]) {
+		padding-right: 40px;
+		@include select-arrow($color-navy);
+		background-repeat: no-repeat;
+		background-position: right $input-padding top 53%;
+		background-size: 10px;
+	}
+
+	.inputs-light & {
+		color: $color-white;
+
+		&:not([multiple]) {
+			@include select-arrow($color-white);
+		}
+	}
+
+	&[multiple] {
+		padding: 0;
+		height: auto;
+
+		option {
+			padding: 10px $input-padding;
+		}
+	}
+
+	// Remove the dotted outline FireFox puts on select elements when focused
+	&:-moz-focusring {
+		color: transparent;
+		text-shadow: 0 0 0 $color-navy;
+	}
+
+	&:-moz-focusring * {
+		color: $color-navy;
+		text-shadow: none;
+	}
+}
+
+// Text areas
+textarea {
+	padding: 8px $input-padding;
+	line-height: $default-line-height;
+	height: auto;
+	max-width: 100%;
+
+	@include on-state(hover, focus, active) {
+		cursor: text;
+	}
+}
+
+// General labels
+label {
+	display: inline-block;
+	margin: 0 0 $line-break-xs 0;
+	font-weight: 600;
+
+	.inputs-light & {
+		color: $color-white;
+	}
+}
+
+// Shared radio button and checkbox styling
+input[type="radio"],
+input[type="checkbox"] {
+	position: absolute;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	opacity: 0;
+	cursor: pointer;
+
+	& + label {
+		position: relative;
+		display: block;
+		font-weight: normal;
+		padding: 0 0 0 ($checkbox-radio-size + 15px);
+		cursor: pointer;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 0;
+			display: inline-block;
+			width: $checkbox-radio-size;
+			height: $checkbox-radio-size;
+			border: $border-weight solid $color-mid-grey;
+			border-radius: ($corners / 2);
+			@include transition();
+
+			@include breakpoint(xs) {
+				top: 3px;
+			}
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 2px;
+			left: 0;
+			width: $checkbox-radio-size;
+			height: $checkbox-radio-size;
+			opacity: 0;
+			@include transition(opacity, transform);
+
+			@include breakpoint(xs) {
+				top: 3px;
+			}
+		}
+
+		@include on-state(hover, focus) {
+
+			&:before {
+				border-color: $color-navy;
+			}
+		}
+
+		.inputs-light & {
+
+			@include on-state(hover, focus) {
+
+				&:before {
+					background-color: rgba($color-white, 0.5);
+				}
+			}
+		}
+	}
+
+	// Manually add a focus ring to the psuedo element for keyboard users, because it cannot naturally receive focus
+	[data-whatintent='keyboard'] & {
+
+		&:focus + label {
+
+			&:before {
+				border-color: $color-navy;
+				box-shadow: $focus-ring;
+			}
+		}
+	}
+}
+
+// Checkboxes
+input[type="checkbox"] {
+
+	& + label {
+
+		&:after {
+			@include pseudo-icon( e018, strip-unit( $checkbox-radio-size ), $color-blue );
+			padding: 0 !important;
+			transform: scale(0.5);
+		}
+	}
+
+	&:checked {
+
+		& + label {
+
+			&:after {
+				opacity: 1;
+
+				.inputs-light & {
+					color: $color-white;
+				}
+			}
+		}
+	}
+}
+
+// Radio buttons
+input[type="radio"] {
+
+	& + label {
+
+		&:before {
+			border-radius: $checkbox-radio-size;
+		}
+
+		&:after {
+			background-color: $color-blue;
+			border-radius: $checkbox-radio-size;
+			transform: scale(0);
+
+			.inputs-light & {
+				background-color: $color-white;
+			}
+		}
+	}
+
+	&:checked {
+
+		& + label {
+
+			&:after {
+				opacity: 1;
+				transform: scale(0.5);
+			}
+		}
+	}
+}

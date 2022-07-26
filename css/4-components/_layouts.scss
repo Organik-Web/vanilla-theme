@@ -1,0 +1,106 @@
+//=======================================================================================================================================================
+// Standard page layout
+//=======================================================================================================================================================
+
+.standard-page {
+
+	// Local variables for standard page layout
+	$standard_page_gutter: $section-pad-mobile;
+	$standard_page_gutter_xs: $section-pad-tablet;
+	$standard_page_gutter_md: $column-pad-tablet * 2;
+	$standard_page_gutter_lg: $column-pad-desktop * 2;
+
+	.standard-page-wrap {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+
+		article {
+			position: relative;
+			width: 100%;
+			flex-grow: 1;
+			margin: 0 auto 0 0;
+			max-width: $max-width-xxxl;
+
+			@include breakpoint(md) {
+				width: 50%;
+			}
+		}
+
+		aside {
+			position: relative;
+			width: 100%;
+
+			@include breakpoint(md) {
+				width: 320px;
+			}
+
+			@include breakpoint(lg) {
+				width: 360px;
+			}
+
+			@include breakpoint(xl) {
+				width: 400px;
+			}
+		}
+
+		&.sidebar-left {
+
+			aside {
+				margin: 0 0 $standard_page_gutter 0;
+
+				@include breakpoint(xs) {
+					margin: 0 0 $standard_page_gutter_xs 0;
+				}
+
+				@include breakpoint(md) {
+					margin: 0 $standard_page_gutter_md 0 0;
+				}
+
+				@include breakpoint(lg) {
+					margin: 0 $standard_page_gutter_lg 0 0;
+				}
+			}
+		}
+
+		&.sidebar-right {
+
+			aside {
+				margin: $standard_page_gutter 0 0 0;
+
+				@include breakpoint(xs) {
+					margin: $standard_page_gutter_xs 0 0 0;
+				}
+
+				@include breakpoint(md) {
+					margin: 0 0 0 $standard_page_gutter_md;
+				}
+
+				@include breakpoint(lg) {
+					margin: 0 0 0 $standard_page_gutter_lg;
+				}
+			}
+		}
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Full width page layout
+//=======================================================================================================================================================
+
+.full-width-page {
+
+	main {
+		width: 100%;
+	}
+
+	&.constrained {
+
+		.editor-content {
+			max-width: $max-width-xxxl;
+		}
+	}
+}

@@ -1,0 +1,79 @@
+/*
+Theme Name:     Organik Vanilla
+Theme URI:      https://www.orgnk-client-domain.org.au/
+Author:         Organik Web
+Author URI:     https://www.organikweb.com.au/
+Description:    Bespoke theme for Organik Client
+Version:        1.0.0
+License:        GNU General Public License v2 or later
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    orgnk_client_textdomain
+
+This is our main sass file. It will only @import other files.
+*/
+
+// Utilities
+@import '1-utilities/variables';
+@import '1-utilities/mixins';
+@import '1-utilities/fonts';
+@import '1-utilities/reset';
+
+// Base
+@import '3-base/body';
+@import '3-base/selection';
+@import '3-base/accessibility';
+@import '3-base/typography';
+@import '3-base/global-elements';
+@import '3-base/inputs-fields';
+
+// Components
+@import '4-components/header.scss';
+@import '4-components/footer.scss';
+@import '4-components/layouts';
+@import '4-components/editor-content';
+@import '4-components/buttons';
+@import '4-components/entry-header';
+@import '4-components/breadcrumbs';
+@import '4-components/sidebar';
+@import '4-components/pagination';
+@import '4-components/contact-details';
+@import '4-components/social-links';
+@import '4-components/gallery';
+@import '4-components/modaal';
+@import '4-components/splide';
+@import '4-components/gravity-forms';
+@import '4-components/google-reviews';
+@import '4-components/google-maps';
+@import '4-components/mobile-contact';
+
+// Sections
+@import '5-sections/sections';
+@import '5-sections/simple-content';
+@import '5-sections/split-content';
+@import '5-sections/cover-content';
+@import '5-sections/cards-list';
+@import '5-sections/simple-cards-list';
+@import '5-sections/highlights-list';
+@import '5-sections/pricing-list';
+@import '5-sections/call-to-action';
+@import '5-sections/two-column-content';
+@import '5-sections/tabs';
+
+// Pages
+@import '6-pages/front-page';
+@import '6-pages/search';
+@import '6-pages/404';
+@import '6-pages/auto-landing';
+@import '6-pages/contact';
+@import '6-pages/sitemap';
+@import '6-pages/form-submission';
+
+// Post types
+@import '7-post-types/posts';
+@import '7-post-types/teams';
+@import '7-post-types/faqs';
+@import '7-post-types/how-tos';
+@import '7-post-types/testimonials';
+@import '7-post-types/events';
+@import '7-post-types/jobs';
+@import '7-post-types/locations';

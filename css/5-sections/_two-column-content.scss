@@ -1,0 +1,39 @@
+//=======================================================================================================================================================
+// Section type - two column content
+//=======================================================================================================================================================
+
+.section-two-column-content {
+
+	.section-column {
+		width: 100%;
+
+		@include breakpoint(md) {
+			width: 50%;				
+		}
+
+		.section-content {
+			margin: $line-break-xl 0 0 0;
+		}
+
+		.section-media .image-cover .ratio-sizer  {
+			min-height: 220px;
+			padding-top: 60%;
+
+			@include breakpoint(sm, md) {
+				padding-top: 50%;
+			}
+		}
+	}
+
+	.column-2 {
+		margin: $section-pad-mobile 0 0 0;
+
+		@include breakpoint(xs) {
+			margin: $section-pad-tablet 0 0 0;
+		}
+
+		@include breakpoint(md) {
+			margin: 0;
+		}
+	}
+}

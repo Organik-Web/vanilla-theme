@@ -1,0 +1,52 @@
+//=======================================================================================================================================================
+// WordPress admin style overrides
+//=======================================================================================================================================================
+
+.wp-admin {
+
+	// Style the 'your session has expired' login pop up in admin so it matches the login form styling
+	#wp-auth-check-wrap #wp-auth-check {
+		background-color: $color-light-grey;
+		color: $color-navy;
+		width: 420px;
+	}
+
+	// Even the top margin of the #poststuff to match the other 3 edges
+	#poststuff .inside {
+		margin: 12px 0 0 0;
+	}
+
+	// Tweak 'featured image' to match ACF
+	#postimagediv .inside img {
+		border-radius: 4px;
+		border: 1px solid #7e8993;
+	}
+
+	// Unset sortable metaboxes height to fix uneven spacing and unnecessary gaps
+	#post-body #normal-sortables {
+		min-height: auto;
+	}
+
+	// Subtle style change to ACF fields
+	.acf-field {
+		
+		.acf-editor-wrap .wp-editor-container,
+		.acf-image-uploader .image-wrap {
+			border: 1px solid #7e8993;
+			border-radius: 4px;
+			overflow: hidden;
+		}
+
+		.acf-image-uploader .image-wrap {
+			max-width: 100px !important;
+		}
+
+		.acf-editor-wrap .wp-editor-tools:empty + .wp-editor-container {
+			border-color: red;
+		}
+
+		select {
+			padding: 4px 8px;
+		}
+	}
+}

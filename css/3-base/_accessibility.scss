@@ -1,0 +1,94 @@
+//=======================================================================================================================================================
+// Screen reader text
+//=======================================================================================================================================================
+
+screen-reader-text,
+.screen-reader-text {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+
+	&:focus {
+		display: block;
+		height: auto;
+		width: auto;
+		background-color: $color-light-grey;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba($color-black, 0.6);
+		clip: auto !important;
+		color: $color-navy;
+		@include font-size($default-font-size-mobile);
+		font-weight: bold;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		z-index: 100000;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// Focus states
+//=======================================================================================================================================================
+
+// This theme uses what-input to track user input - see: https://github.com/ten1seven/what-input
+
+// Remove the default focus state
+*:focus {
+	outline: 0;
+
+	// Add the focus ring for keyboard users
+	[data-whatintent='keyboard'] & {
+		box-shadow: $focus-ring;
+	}
+}
+
+
+
+//=======================================================================================================================================================
+// 'Skip to content' button
+//=======================================================================================================================================================
+
+.skip-to-content {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+	display: block;
+	padding: 14px 28px;
+	font-weight: 600;
+	white-space: nowrap;
+	background-color: $color-white;
+	border-radius: $corners;
+	box-shadow: $shadows;
+    transform: translate(-50%, -100px);
+	opacity: 0;
+	z-index: 99999;
+    @include transition();
+
+	@include on-state(hover, focus) {
+		color: $color-navy;
+		transform: translate(-50%, 0);
+		opacity: 1;
+	}
+}
+
+.admin-bar {
+
+    .skip-to-content {
+        top: 56px;
+
+		@include breakpoint(783, 0) {
+			top: 42px;
+		}
+    }
+}
+
+// Prevent the focus ring showing when the skip to target is focused
+main#main-content {
+	box-shadow: none;
+}

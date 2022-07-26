@@ -1,0 +1,39 @@
+//=======================================================================================================================================================
+// Section type - simple content
+//=======================================================================================================================================================
+
+.section-simple-content {
+
+	&.content-left {
+
+		.section-content {
+
+			.content-wrap {
+				max-width: $max-width-xl;
+			}
+		}
+	}
+
+	&.content-center {
+
+		.section-wrap {
+			justify-content: center;
+		}
+		
+		.section-content {
+			align-items: center;
+			width: 100%;
+
+			.content-wrap {
+				text-align: center;
+			}
+
+			.actions {
+
+				.button-group {
+					justify-content: center;
+				}
+			}
+		}
+	}
+}

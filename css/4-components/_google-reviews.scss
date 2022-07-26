@@ -1,0 +1,189 @@
+//=======================================================================================================================================================
+// Google reviews
+//=======================================================================================================================================================
+
+.section-google-reviews {
+    background-color: $color-light-grey;
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: $paragraph-break 0 0 0;
+
+        .button-group {
+            justify-content: center;
+        }
+    }
+}
+
+.orgnk-greviews {
+    position: relative;
+    width: 100%;
+
+    .reviews-list {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% + #{$gutters} * 2);
+        margin: (-$gutters);
+
+        .review {
+            position: relative;
+            display: flex;
+            width: 100%;
+            padding: $gutters;
+    
+            @include breakpoint(md) {
+                width: 50%;
+            }
+    
+            @include breakpoint(xl) {
+                width: 33.33336%;
+            }
+
+            .review-wrap {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                width: 100%;
+                padding: ($container-pad-mobile - 5px);
+                background-color: $color-white;
+                border-radius: $corners;
+                box-shadow: $shadows;
+                transform: translate3d(0, 0, 0); // This fixes the overflow/border-radius bug in safari
+                overflow: hidden;
+
+                @include breakpoint(xxs) {
+                    padding: 30px;
+                }
+
+                @include breakpoint(md) {
+                    padding: 40px;
+                }
+            }
+
+            .review-rating {
+                display: flex;
+                margin: 0 0 $line-break 0;
+
+                .star {
+                    display: block;
+                    padding: 0 2px;
+
+                    &:before {
+                        @include pseudo-icon( e044, 16, $color-blue );
+                    }
+
+                    &.star-empty {
+
+                        &:before {
+                            color: $color-mid-grey;
+                        }
+                    }
+                }
+            }
+
+            .review-content {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                width: 100%;
+
+                .content {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    width: 100%;
+                    max-width: $max-width-xs;
+                }
+            }
+
+            .review-meta {
+                display: flex;
+                align-items: center;
+                margin: $line-break 0 0 0;
+
+                .avatar {
+                    width: 40px;
+                    margin: 0 $gutters 0 0;
+                }
+
+                .attribution {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .name {
+                    display: block;
+                    width: 100%;
+                    font-weight: 700;
+                }
+
+                .relative-time {
+                    display: block;
+                    width: 100%;
+                    @include font-size(12);
+                }
+            }
+        }
+    }
+
+    // Reviews slider
+    &.type-slider {
+
+        .reviews-list {
+            display: none;
+            margin: 0 (-$gutters);
+            padding: 0 0 $paragraph-break-lg 0;
+            opacity: 0;
+            visibility: hidden;
+            border-radius: $corners;
+            @include transition();
+
+            // Fade slider in once ready
+            &.is-active {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                display: none;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 10vw;
+                z-index: 1;
+    
+                @include breakpoint(md, xl) {
+                    display: block;
+                }
+            }
+    
+            &:before {
+                left: 0;
+                background: linear-gradient(90deg, rgba($color-light-grey, 1) 0%, rgba($color-light-grey, 1) 10%, rgba($color-light-grey, 0) 100%);
+            }
+    
+            &:after {
+                right: 0;
+                background: linear-gradient(270deg, rgba($color-light-grey, 1) 0%, rgba($color-light-grey, 1) 10%, rgba($color-light-grey, 0) 100%);
+            }
+
+            .splide__track {
+                margin: (-$square-button-size) 0;
+            }
+
+            .review {
+                width: 100%;
+                padding: $square-button-size $gutters;
+            }
+        }
+    }
+}
