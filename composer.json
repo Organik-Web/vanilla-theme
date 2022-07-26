@@ -1,0 +1,13 @@
+{
+    "name": "organikweb/vanilla-theme",
+    "description": "The base Vanilla framework theme used in Organik Web sites.",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Organik Web",
+            "email": "hello@organikweb.com.au"
+        }
+    ],
+    "require": {}
+}
