@@ -8,8 +8,18 @@ $buttons        = orgnk_do_acf_button_group( $meta_key . '_buttons', 'primary-bu
 
 if ( $title ) : ?>
 
-	<section class="section section-front-hero"<?php if ( $image ) echo ' style="background-image: url(' . $image['full']['url'] . ');"' ?>>
+	<section class="section section-front-hero">
+        <?php if ( $image  && function_exists( "orgnk_picture" ) ) :?>
+            <?php orgnk_picture($image['id'], [
+                0 => ['banner'],
+                200 => ['banner-small.webp', 'banner-small'],
+                1280 => ['banner.webp', 'banner'],
+            ], [
+                'class' => 'image hero-image',
+                'alt' => $image['alt'] ?? null,
 
+            ]); ?>
+        <?php endif ?>
 		<div class="overlay"></div>
 
 		<div class="container">
@@ -27,6 +37,6 @@ if ( $title ) : ?>
 				</div>
 			</div>
 		</div>
-	</section>
+    </section>
 
 <?php endif;

@@ -38,4 +38,4 @@ if ( $cta_active ) : ?>
         </div>
     </section>
 
-<?php endif; 
+<?php endif;

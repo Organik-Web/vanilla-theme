@@ -186,6 +186,37 @@ function orgnk_get_entry_title() {
 //=======================================================================================================================================================
 
 /**
+ * orgnk_get_image_meta()
+ * Retrieves all image meta i.e. ID, title, alt, caption & description
+ */
+function orgnk_get_image_meta( $attachment_id = null ) {
+
+	if ( ! $attachment_id ) return;
+
+	$output 			= null;
+	$attachment			= get_post( $attachment_id );
+
+	// Check that the attachment can be retrieved successfully before proceeding
+	if ( $attachment ) {
+
+		// Note: the 'url', 'width' and 'height' attributes for each size are set to default to the values of the 'full' image,
+		// they are then overwritten later by each size's respective values (if they exist). This is done as small images will result in some sizes not existing,
+		// which would mean the url, width and height would not be found, potentially cause errors in template usage
+		$output = array(
+			'id'			=> $attachment_id,
+			'title' 		=> esc_html( $attachment->post_title ),
+			'alt' 			=> esc_html( get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ) ),
+			'caption' 		=> esc_html( $attachment->post_excerpt ),
+			'description' 	=> esc_html( $attachment->post_content ),
+		);
+	}
+
+	return $output;
+}
+
+//=======================================================================================================================================================
+
+/**
  * orgnk_get_image()
  * Retrieves all the sizes and attributes for the supplied attachment ID and stores them in an array
  */
@@ -469,7 +500,11 @@ function orgnk_get_the_content( $content = null ) {
  */
 function orgnk_get_file_contents( $url ) {
 
-	if ( orgnk_remote_file_exists( $url ) ) {
+	if ( orgnk_local_file_exists( $url) ) {
+
+		return file_get_contents( orgnk_url_to_local_path( $url ) );
+
+	} elseif ( orgnk_remote_file_exists( $url ) ) {
 
 		$ch = curl_init();
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
@@ -486,6 +521,38 @@ function orgnk_get_file_contents( $url ) {
 
 	return false;
 }
+
+//=======================================================================================================================================================
+
+/**
+ * orgnk_local_file_exists()
+ * Checks if a local file exists. Can convert a URL to the current page to a local path.
+ *
+ * @param string $url
+ * @return bool
+ */
+function orgnk_local_file_exists( $url ) {
+
+	if ( filter_var( $url, FILTER_VALIDATE_URL ) ) {
+		$urlParts = parse_url( $url );
+		$siteParts = parse_url( site_url() );
+
+		if ( !in_array( strtolower( $urlParts['scheme'] ), [ 'http', 'https' ] ) ) {
+			return false;
+		}
+
+		if ( $urlParts['host'] !== $siteParts['host'] ) {
+			return false;
+		}
+
+		return file_exists( ABSPATH . ltrim( $urlParts['path'], '/' ) );
+	}
+
+	return file_exists( $url );
+
+}
+
+//=======================================================================================================================================================
 
 /**
  * orgnk_remote_file_exists()
@@ -504,6 +571,36 @@ function orgnk_remote_file_exists( $url ) {
 	}
 
   	return false;
+}
+
+//=======================================================================================================================================================
+
+/**
+ * orgnk_url_to_local_path()
+ * Converts a URL to a local path if the URL is pointing to current host.
+ *
+ * @param string $url
+ * @return string
+ */
+function orgnk_url_to_local_path( $url ) {
+
+	if ( filter_var( $url, FILTER_VALIDATE_URL ) ) {
+		$urlParts = parse_url( $url );
+		$siteParts = parse_url( site_url() );
+
+		if ( !in_array( strtolower( $urlParts['scheme'] ), [ 'http', 'https' ] ) ) {
+			return false;
+		}
+
+		if ( $urlParts['host'] !== $siteParts['host'] ) {
+			return false;
+		}
+
+		return  ABSPATH . ltrim( $urlParts['path'], '/' );
+	}
+
+	return $url;
+
 }
 
 //=======================================================================================================================================================
@@ -665,7 +762,6 @@ function orgnk_gallery_slider( $image_ids = null, $slide_size = 'full', $thumb_s
 
 	$output = null;
 	$images = null;
-
 	foreach ( $image_ids as $id ) {
 
 		if ( ! $id ) continue;
@@ -1167,4 +1263,98 @@ function orgnk_estimated_reading_time( $content = null, $words_per_minute = 200 
 	}
 
 	return $output;
+}
+
+//=======================================================================================================================================================
+
+$themeManifestCache = null;
+
+/**
+ * orgnk_enqueue_script()
+ * Enqueues a JavaScript file, taking note of the Laravel Mix manifest to include any versioning / cache
+ * busting suffixes.
+ *
+ * The path is expected to be relative to the theme root directory.
+ */
+function orgnk_enqueue_script($name, $path, $dependencies = [], $fallbackVersion = SCRIPT_VERSION, $inFooter = false)
+{
+	global $themeManifestCache;
+
+	$themeDir = get_template_directory();
+	$themeUri = get_template_directory_uri();
+	$mixManifest = $themeDir . '/mix-manifest.json';
+	$assetRelative = '/' . ltrim($path, '/');
+	$assetPath = $themeUri . $assetRelative;
+
+	if (!file_exists($mixManifest)) {
+		// If the manifest does not exist, enqueue with fallback
+		wp_enqueue_script($name, $assetPath, $dependencies, $fallbackVersion, $inFooter);
+		return;
+	}
+
+	if (!is_null($themeManifestCache)) {
+		$manifest = $themeManifestCache;
+	} else {
+		$manifest = $themeManifestCache = json_decode(file_get_contents($mixManifest), true);
+	}
+
+	if (!isset($manifest[$assetRelative])) {
+		// If no manifest entry exists for this path, enqueue with fallback
+		wp_enqueue_script($name, $assetPath, $dependencies, $fallbackVersion, $inFooter);
+		return;
+	}
+
+	if (!preg_match('/id=(.*)$/i', $manifest[$assetRelative], $matches)) {
+		// If we are unable to extract the asset ID, enqueue with fallback
+		wp_enqueue_script($name, $assetPath, $dependencies, $fallbackVersion, $inFooter);
+		return;
+	}
+
+	$version = $matches[1];
+	wp_enqueue_script($name, $assetPath, $dependencies, $version, $inFooter);
+}
+
+/**
+ * orgnk_enqueue_style()
+ * Enqueues a CSS file, taking note of the Laravel Mix manifest to include any versioning / cache
+ * busting suffixes.
+ *
+ * The path is expected to be relative to the theme root directory.
+ */
+function orgnk_enqueue_style($name, $path, $dependencies = [], $fallbackVersion = SCRIPT_VERSION, $media = 'all')
+{
+	global $themeManifestCache;
+
+	$themeDir = get_template_directory();
+	$themeUri = get_template_directory_uri();
+	$mixManifest = $themeDir . '/mix-manifest.json';
+	$assetRelative = '/' . ltrim($path, '/');
+	$assetPath = $themeUri . $assetRelative;
+
+	if (!file_exists($mixManifest)) {
+		// If the manifest does not exist, enqueue with fallback
+		wp_enqueue_style($name, $assetPath, $dependencies, $fallbackVersion, $media);
+		return;
+	}
+
+	if (!is_null($themeManifestCache)) {
+		$manifest = $themeManifestCache;
+	} else {
+		$manifest = $themeManifestCache = json_decode(file_get_contents($mixManifest), true);
+	}
+
+	if (!isset($manifest[$assetRelative])) {
+		// If no manifest entry exists for this path, enqueue with fallback
+		wp_enqueue_style($name, $assetPath, $dependencies, $fallbackVersion, $media);
+		return;
+	}
+
+	if (!preg_match('/id=(.*)$/i', $manifest[$assetRelative], $matches)) {
+		// If we are unable to extract the asset ID, enqueue with fallback
+		wp_enqueue_style($name, $assetPath, $dependencies, $fallbackVersion, $media);
+		return;
+	}
+
+	$version = $matches[1];
+	wp_enqueue_style($name, $assetPath, $dependencies, $version, $media);
 }

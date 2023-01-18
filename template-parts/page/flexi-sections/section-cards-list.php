@@ -45,7 +45,7 @@ if ( $cards_count ) : ?>
                         <?php for ( $i = 0; $i < $cards_count; $i++ ) :
 
                             // Repeater variables
-                            $card_image         = orgnk_get_image( get_post_meta( orgnk_get_the_ID(), $meta_key . '_cards_' . $i . '_image', true ) );
+                            $card_image         = orgnk_get_image_meta( get_post_meta( orgnk_get_the_ID(), $meta_key . '_cards_' . $i . '_image', true ) );
                             $card_title         = esc_html( get_post_meta( orgnk_get_the_ID(), $meta_key . '_cards_' . $i . '_title', true ) );
                             $card_text          = esc_html( get_post_meta( orgnk_get_the_ID(), $meta_key . '_cards_' . $i . '_text', true ) );
                             $card_link          = orgnk_get_acf_link( $meta_key . '_cards_' . $i . '_link' );
@@ -55,16 +55,21 @@ if ( $cards_count ) : ?>
                                     <?php if ( $card_link ) echo '<a class="card-link" href="' . $card_link['url'] . '"' . $card_link['target'] . '>' ?>
                                         <div class="card-wrapper">
 
-                                            <?php if ( $card_image ) : ?>
-                                                <div class="ratio-sizer card_image-container">
-                                                    <picture>
-                                                        <source srcset="<?php if ( $card_image ) echo $card_image['full']['url'] ?>" media="(min-width: 1024px)">
-                                                        <source srcset="<?php if ( $card_image ) echo $card_image['large']['url'] ?>" media="(min-width: 768px)">
-                                                        <source srcset="<?php if ( $card_image ) echo $card_image['medium']['url'] ?>" media="(min-width: 400px)">
-                                                        <img width="<?php echo $card_image['thumbnail']['width'] ?>"  height="<?php echo $card_image['thumbnail']['height'] ?>" class="card-thumb image-cover" <?php if ( $card_image ) echo 'src="' . $card_image['thumbnail']['url'] . '"' ?> alt="<?php if ( $card_image['alt'] ) echo $card_image['alt'] ?>" loading="lazy" ></img>
-                                                    </picture>
-                                                </div>
-                                            <?php endif ?>
+                                        <?php if ( $card_image  && function_exists( "orgnk_picture" ) ) :?>
+                                            <div class="picture-ratio-sizer card-image-container">
+                                                <?php orgnk_picture($card_image['id'], [
+                                                    0 => ['lg'],
+                                                    200 => ['thumb.webp', 'thumb'],
+                                                    1280 => ['lg.webp', 'lg'],
+                                                ], [
+                                                    'class' => 'image entry-thumb image-cover',
+                                                    'alt' => $card_image['alt'] ?? null,
+                                                    'loading' => 'lazy',
+                                                    'width' => 400,
+                                                    'height' => 400
+                                                ]); ?>
+                                            </div>
+                                        <?php endif ?>
 
                                             <div class="card-preview">
                                                 <div class="card-preview-content">
