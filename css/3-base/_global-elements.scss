@@ -338,3 +338,35 @@ img {
 .modal-content-source {
     display: none;
 }
+
+
+
+//=======================================================================================================================================================
+// ORGNK Picture Elements
+//=======================================================================================================================================================
+
+.picture-ratio-sizer {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    padding-top: 56.25%;
+
+    &.image-contain {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .entry-thumb {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        min-width: 100%;
+        min-height: 100%;
+        height: auto;
+        width: auto;
+        object-fit: cover;
+    }
+}

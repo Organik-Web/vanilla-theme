@@ -7,13 +7,14 @@ $meta_key           = ( $args && isset( $args['section_meta_key'] ) ) ? $args['s
 
 // Section meta variables
 $image              = orgnk_get_image_meta(get_post_meta( orgnk_get_the_ID(), $meta_key . '_image', true ) );
+$image_contain      = esc_html( get_post_meta( orgnk_get_the_ID(), $meta_key . '_image_contain', true ) );
 $video              = esc_url( get_post_meta( orgnk_get_the_ID(), $meta_key . '_video', true ) );
 $map                = esc_url( get_post_meta( orgnk_get_the_ID(), $meta_key . '_map', true ) );
 
 if ( $image || $video || $map ) : ?>
 
 
-    <div class="picture-ratio-sizer image-container">
+    <div class="picture-ratio-sizer image-container <?php if ($image_contain) echo 'image-contain' ?>">
         <?php if ( $image  && function_exists( "orgnk_picture" ) ) :?>
             <?php orgnk_picture($image['id'], [
                 0 => ['lg'],

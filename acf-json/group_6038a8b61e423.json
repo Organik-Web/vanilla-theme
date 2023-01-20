@@ -167,6 +167,25 @@
             "mime_types": ""
         },
         {
+            "key": "field_62205992ba0b2",
+            "label": "Image Contain",
+            "name": "image_contain",
+            "type": "true_false",
+            "instructions": "Enable this to stop images overflowing their container, useful when you need to show a whole image e.g logos, icons.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled"
+        },
+        {
             "key": "field_6038a8b622de8",
             "label": "Video",
             "name": "video",
