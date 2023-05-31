@@ -1,0 +1,22 @@
+{
+  "name": "@organik/vanilla-build",
+  "version": "1.0.0",
+  "description": "Build process for Organik Web themes",
+  "main": "index.js",
+  "scripts": {
+    "build": "mix --production",
+    "dev": "mix watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Thomson <bthomson@organikweb.com.au>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "laravel-mix": "^6.0.41",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.49.0",
+    "sass-loader": "^12.4.0",
+    "@babel/core": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0"
+  }
+}
