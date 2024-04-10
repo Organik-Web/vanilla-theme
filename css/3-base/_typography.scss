@@ -3,14 +3,16 @@
 //=======================================================================================================================================================
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-	font-family: $font-1;
+	font-family: $font-2;
     font-weight: 600;
     margin: 0 0 $line-break 0;
 }
 
 h1, .h1 {
 	@include font-size($h1-mobile);
-	line-height: 1.4;
+	font-weight: $font-weight-normal;
+    line-height: $line-height-extra-tight;
+    letter-spacing: $letter-spacing-extra-wide;
 
 	&.big {
 		@include font-size($h1-big-mobile);
@@ -23,47 +25,126 @@ h1, .h1 {
 			@include font-size($h1-big-desktop);
 		}
 	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
+	}
 }
 
 h2, .h2 {
 	@include font-size($h2-mobile);
 	line-height: 1.5;
+    letter-spacing: $letter-spacing-extra-wide;
+	line-height: $line-height-extra-tight;
 
 	@include breakpoint(xs) {
 		@include font-size($h2-desktop);
+	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
 	}
 }
 
 h3, .h3 {
 	@include font-size($h3-mobile);
-	line-height: 1.5;
+	line-height: $line-height-tight;
+	letter-spacing: $letter-spacing-wide;
 
 	@include breakpoint(xs) {
 		@include font-size($h3-desktop);
+	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
 	}
 }
 
 h4, .h4 {
 	@include font-size($h4-mobile);
+	line-height: $line-height-tight;
+	letter-spacing: $letter-spacing-tight;
 
 	@include breakpoint(xs) {
 		@include font-size($h4-desktop)
+	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
 	}
 }
 
 h5, .h5 {
 	@include font-size($h5-mobile);
+	line-height: $line-height-normal;
 
 	@include breakpoint(xs) {
 		@include font-size($h5-desktop)
+	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
 	}
 }
 
 h6, .h6 {
 	@include font-size($h6-mobile);
+	line-height: $line-height-normal;
 
 	@include breakpoint(xs) {
 		@include font-size($h6-desktop)
+	}
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.thin {
+		font-weight: $font-weight-light;
 	}
 }
 
@@ -99,9 +180,42 @@ p {
 	}
 }
 
-small {
-	@include font-size(10);
+small, .small {
+	@include font-size($small-desktop);
+	font-weight: 300;
+	line-height: 1.75;
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.regular {
+		font-weight: $font-weight-regular;
+	}
 }
+
+.tiny {
+	@include font-size($tiny-desktop);
+	line-height: 1.6;
+	font-weight: 300;
+
+	&.bold {
+		font-weight: $font-weight-bold;
+	}
+
+	&.medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.regular {
+		font-weight: $font-weight-regular;
+	}
+}
+
 
 em {
 	font-style: italic;

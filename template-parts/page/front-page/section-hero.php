@@ -11,9 +11,9 @@ if ( $title ) : ?>
 	<section class="section section-front-hero">
         <?php if ( $image  && function_exists( "orgnk_picture" ) ) :?>
             <?php orgnk_picture($image['id'], [
-                0 => ['banner'],
-                200 => ['banner-small.webp', 'banner-small'],
-                1280 => ['banner.webp', 'banner'],
+                0 => ['xl'],
+                200 => ['xl-small.webp', 'xl-small'],
+                1280 => ['xl.webp', 'xl'],
             ], [
                 'class' => 'image hero-image',
                 'alt' => $image['alt'] ?? null,
