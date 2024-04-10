@@ -13,6 +13,7 @@ $default-font-size-mobile:      13px;
 $default-font-size-desktop:     14px;
 $default-line-height:           1.67;
 
+$h1-big-desktop:                80;
 $h1-desktop:                    80;
 $h2-desktop:                    60;
 $h3-desktop:                    40;
@@ -20,11 +21,13 @@ $h4-desktop:                    30;
 $h5-desktop:                    24;
 $h6-desktop:                    20;
 $body-desktop:                  18; // Default body font size
-$small-desktop:                 12;
+$body-small-desktop:            12;
 $caption-desktop:               14;
 $tiny-desktop:                  10;
+$heading-small-desktop:         13;
 
 // Mobile font sizes
+$h1-big-mobile:                 80;
 $h1-mobile:                     48; // Smaller than desktop
 $h2-mobile:                     36; // Smaller than desktop
 $h3-mobile:                     30; // Smaller than desktop
@@ -32,11 +35,10 @@ $h4-mobile:                     24; // Smaller than desktop
 $h5-mobile:                     20; // Smaller than desktop
 $h6-mobile:                     18; // Smaller than desktop
 $body-mobile:                   16; // Slightly smaller than desktop
-$small-mobile:                  14; // Slightly smaller than desktop
+$body-small-mobile:             12;
 $caption-mobile:                12; // Slightly smaller than desktop
 $tiny-mobile:                   8; // Smaller than desktop
 $heading-small-mobile:          12;
-$heading-small-desktop:         13;
 
 // Font weight
 $font-weight-light:             300;

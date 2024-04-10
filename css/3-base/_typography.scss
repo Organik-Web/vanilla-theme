@@ -181,7 +181,7 @@ p {
 }
 
 small, .small {
-	@include font-size($small-desktop);
+	@include font-size($body-small-desktop);
 	font-weight: 300;
 	line-height: 1.75;
 
@@ -194,7 +194,7 @@ small, .small {
 	}
 
 	&.regular {
-		font-weight: $font-weight-regular;
+		font-weight: $font-weight-normal;
 	}
 }
 
@@ -212,7 +212,7 @@ small, .small {
 	}
 
 	&.regular {
-		font-weight: $font-weight-regular;
+		font-weight: $font-weight-normal;
 	}
 }
 
