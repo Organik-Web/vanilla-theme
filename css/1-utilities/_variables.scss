@@ -2,58 +2,60 @@
 // Fonts
 //=======================================================================================================================================================
 // Font families
-$font-1: 'Montserrat', Helvetica, Arial, sans-serif;
-$font-2: 'Oswald', sans-serif;
-$system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-$social-icons: 'social-icons';
-$ui-icons: 'ui-icons';
+$font-1:                    'Montserrat', Helvetica, Arial, sans-serif;
+$font-2:                    'Oswald', sans-serif;
+$system-font:               -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+$social-icons:              'social-icons';
+$ui-icons:                  'ui-icons';
 
 // Font sizes
-$default-font-size-mobile: 13px;
-$default-font-size-desktop: 14px;
-$default-line-height: 1.67;
+$default-font-size-mobile:      13px;
+$default-font-size-desktop:     14px;
+$default-line-height:           1.67;
 
-$h1-desktop: 80px;
-$h2-desktop: 60px;
-$h3-desktop: 40px;
-$h4-desktop: 30px;
-$h5-desktop: 24px;
-$h6-desktop: 20px;
-$body-desktop: 18px; // Default body font size
-$small-desktop: 12px;
-$caption-desktop: 14px;
-$tiny-desktop: 10px;
+$h1-desktop:                    80;
+$h2-desktop:                    60;
+$h3-desktop:                    40;
+$h4-desktop:                    30;
+$h5-desktop:                    24;
+$h6-desktop:                    20;
+$body-desktop:                  18; // Default body font size
+$small-desktop:                 12;
+$caption-desktop:               14;
+$tiny-desktop:                  10;
 
 // Mobile font sizes
-$h1-mobile: 48px; // Smaller than desktop
-$h2-mobile: 36px; // Smaller than desktop
-$h3-mobile: 30px; // Smaller than desktop
-$h4-mobile: 24px; // Smaller than desktop
-$h5-mobile: 20px; // Smaller than desktop
-$h6-mobile: 18px; // Smaller than desktop
-$body-mobile: 16px; // Slightly smaller than desktop
-$small-mobile: 14px; // Slightly smaller than desktop
-$caption-mobile: 12px; // Slightly smaller than desktop
-$tiny-mobile: 8px; // Smaller than desktop
+$h1-mobile:                     48; // Smaller than desktop
+$h2-mobile:                     36; // Smaller than desktop
+$h3-mobile:                     30; // Smaller than desktop
+$h4-mobile:                     24; // Smaller than desktop
+$h5-mobile:                     20; // Smaller than desktop
+$h6-mobile:                     18; // Smaller than desktop
+$body-mobile:                   16; // Slightly smaller than desktop
+$small-mobile:                  14; // Slightly smaller than desktop
+$caption-mobile:                12; // Slightly smaller than desktop
+$tiny-mobile:                   8; // Smaller than desktop
+$heading-small-mobile:          12;
+$heading-small-desktop:         13;
 
 // Font weight
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+$font-weight-light:             300;
+$font-weight-normal:            400;
+$font-weight-medium:            500;
+$font-weight-semibold:          600;
+$font-weight-bold:              700;
 
 // Line heights
-$line-height-extra-tight: 1.17;
-$line-height-tight: 1.2;
-$line-height-normal: 1.6;
-$line-height-relaxed: 1.7;
+$line-height-extra-tight:       1.17;
+$line-height-tight:             1.2;
+$line-height-normal:            1.6;
+$line-height-relaxed:           1.7;
 
 // Letter spacing
-$letter-spacing-tight: -0.35px;
-$letter-spacing-normal: 0px;
-$letter-spacing-wide: 1.4px;
-$letter-spacing-extra-wide: 1.9px;
+$letter-spacing-tight:          -0.35px;
+$letter-spacing-normal:         0px;
+$letter-spacing-wide:           1.4px;
+$letter-spacing-extra-wide:     1.9px;
 
 //=======================================================================================================================================================
 // Colors
